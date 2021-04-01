@@ -1,5 +1,7 @@
 # repo-template
 
+[![DOCKER](https://github.com/blyndusk/repo-template/actions/workflows/docker.yml/badge.svg)](https://github.com/blyndusk/repo-template/actions/workflows/docker.yml)
+
 - [repo-template](#repo-template)
   - [Use](#use)
     - [Help](#help)

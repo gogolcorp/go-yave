@@ -19,3 +19,4 @@ logs: ## Display logs of your containers
 	docker-compose logs --follow
 
 .PHONY: help
+

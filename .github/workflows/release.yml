@@ -22,7 +22,7 @@ jobs:
         if: github.ref != 'refs/heads/main'
         run: exit 1
 
- DOCKER:
+  DOCKER:
     name: DOCKER
     needs: [SETUP-ENV]
     runs-on: ubuntu-latest

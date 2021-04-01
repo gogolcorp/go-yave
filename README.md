@@ -1,6 +1,8 @@
 # repo-template
 
-[![DOCKER](https://github.com/blyndusk/repo-template/actions/workflows/docker.yml/badge.svg)](https://github.com/blyndusk/repo-template/actions/workflows/docker.yml)
+[![DOCKER](https://github.com/blyndusk/repo-template/actions/workflows/docker.yml/badge.svg)](https://github.com/blyndusk/repo-template/actions/workflows/docker.yml) 
+[![PYTHON](https://github.com/blyndusk/repo-template/actions/workflows/python.yml/badge.svg)](https://github.com/blyndusk/repo-template/actions/workflows/python.yml)
+[![RELEASE](https://github.com/blyndusk/repo-template/actions/workflows/release.yml/badge.svg)](https://github.com/blyndusk/repo-template/actions/workflows/release.yml)
 
 - [repo-template](#repo-template)
   - [Use](#use)

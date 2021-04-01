@@ -1,4 +1,4 @@
-name: MANUAL DEPLOY
+name: RELEASE
 
 on:
   # triggered manually by user action

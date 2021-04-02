@@ -22,4 +22,4 @@ jobs:
         
     - name: 4 - LINT
       run: |
-        pylint -E `ls -R|grep .py$|xargs`
+        pylint `ls -R|grep .py$|xargs`

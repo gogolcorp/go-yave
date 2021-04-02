@@ -51,13 +51,8 @@ jobs:
         uses: heinrichreimer/github-changelog-generator-action@v2.1.1
         id: changelog_id
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}changelog_id
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: TEST
-        run: |
-          echo ${{steps.changelog_id.outputs.changelog}} > test.md
-          cat test.md
-          
       # create release according to version
       - name: 2 - CREATE RELEASE
         uses: actions/create-release@v1
@@ -66,6 +61,9 @@ jobs:
         with:
           tag_name: ${{ github.event.inputs.image_version }}
           release_name: v${{ github.event.inputs.image_version }}
-          body: ${{steps.changelog_id.outputs.changelog}}
+          body: |
+            ### Changelog:
+            
+            ${{steps.changelog_id.outputs.changelog}}
           draft: false
           prerelease: false

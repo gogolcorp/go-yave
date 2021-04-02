@@ -54,7 +54,9 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}changelog_id
 
       - name: TEST
-        run: echo ${{steps.changelog_id.outputs.changelog}}
+        run: |
+          echo ${{steps.changelog_id.outputs.changelog}} > test.md
+          cat test.md
           
       # create release according to version
       - name: 2 - CREATE RELEASE

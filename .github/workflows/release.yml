@@ -47,6 +47,12 @@ jobs:
       - name: 1 - CHECKOUT
         uses: actions/checkout@v2
 
+      - name: 2 - CHANGELOG
+        id: github_release
+        uses: mikepenz/release-changelog-builder-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
       # create release according to version
       - name: 2 - CREATE RELEASE
         uses: actions/create-release@v1
@@ -55,7 +61,6 @@ jobs:
         with:
           tag_name: ${{ github.event.inputs.image_version }}
           release_name: v${{ github.event.inputs.image_version }}
-          body: |
-            go-restful-api@${{ github.event.inputs.image_version }}
+          body: ${{steps.github_release.outputs.changelog}}
           draft: false
           prerelease: false

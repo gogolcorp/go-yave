@@ -1,0 +1,66 @@
+name: RELEASE
+
+on:
+  # triggered manually by user action
+  workflow_dispatch:
+    inputs:
+      image_version:
+        description: "THE DOCKER IMAGE TAG"
+        required: true
+        default: "0.0.0"
+
+jobs:
+  SETUP-ENV:
+    name: SETUP ENV
+    runs-on: ubuntu-latest
+    steps:
+      - name: 1 - CHECKOUT
+        uses: actions/checkout@v2
+
+      # if the env doesn't match the branch, the action failed and stop; else, continue
+      - name: 2 - CHECK VARIABLES TO MATCH ENVIRONMENT
+        if: github.ref != 'refs/heads/main'
+        run: exit 1
+
+  DOCKER:
+    name: DOCKER
+    needs: [SETUP-ENV]
+    runs-on: ubuntu-latest
+    steps:
+      - name: 1 - CHECKOUT
+        uses: actions/checkout@v2
+
+      - name: 2 - BUILD + PUSH DOCKER IMG TO GITHUB PACKAGE REGISTRY
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ github.actor }}
+          password: ${{ secrets.GPAT }}
+          registry: docker.pkg.github.com
+          repository: blyndusk/repo-template/pyapp
+          tags: "${{ github.event.inputs.image_version }}"
+
+  RELEASE:
+    name: RELEASE
+    needs: [DOCKER]
+    runs-on: ubuntu-latest
+    steps:
+      - name: 1 - CHECKOUT
+        uses: actions/checkout@v2
+
+      - name: 2 - CHANGELOG
+        id: github_release
+        uses: mikepenz/release-changelog-builder-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      # create release according to version
+      - name: 2 - CREATE RELEASE
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.event.inputs.image_version }}
+          release_name: v${{ github.event.inputs.image_version }}
+          body: ${{steps.github_release.outputs.changelog}}
+          draft: false
+          prerelease: false

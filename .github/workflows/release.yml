@@ -51,7 +51,10 @@ jobs:
         uses: heinrichreimer/github-changelog-generator-action@v2.1.1
         id: changelog_id
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}changelog_id
+
+      - name: TEST
+        run: echo ${{steps.changelog_id.outputs.changelog}}
           
       # create release according to version
       - name: 2 - CREATE RELEASE

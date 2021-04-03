@@ -61,6 +61,6 @@ jobs:
         with:
           tag_name: ${{ github.event.inputs.image_version }}
           release_name: v${{ github.event.inputs.image_version }}
-          body: ${{steps.changelog_id.outputs.changelog}
+          body: ${{ steps.changelog_id.outputs.changelog }}
           draft: false
           prerelease: false

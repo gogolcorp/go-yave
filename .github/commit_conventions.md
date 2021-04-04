@@ -1,4 +1,4 @@
-# Commit Convention
+# Commit convention
 
 ```
 tag(scope): #issue_id message

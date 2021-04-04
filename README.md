@@ -61,7 +61,7 @@ See [branch_naming_convention.md](.github/branch_naming_convention.md) for more 
 
 ### D - Pull request template
 
-See [user-story.md](.github/pull_request_template.md) for more informations.
+See [pull_request_template.md](.github/pull_request_template.md) for more informations.
 
 ## III - Use
 

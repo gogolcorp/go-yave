@@ -54,7 +54,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       # create release according to version
-      - name: 2 - CREATE RELEASE
+      - name: 3 - CREATE RELEASE
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

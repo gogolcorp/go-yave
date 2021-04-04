@@ -1,4 +1,4 @@
-# Branch naming Convention
+# Branch naming convention
 
 ```
 type_scope-of-the-work

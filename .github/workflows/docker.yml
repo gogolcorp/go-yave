@@ -10,18 +10,20 @@ jobs:
     name: DOCKER
     runs-on: ubuntu-latest
     steps:
+      - name: 1 - CHECKOUT
+        uses: actions/checkout@v2
 
-      - name: 1 - SETUP BUILDX
+      - name: 2 - SETUP BUILDX
         uses: docker/setup-buildx-action@v1
 
-      - name: 2 - LOGIN TO GHCR.IO
+      - name: 3 - LOGIN TO GHCR.IO
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: 3 - BUILD + PUSH
+      - name: 4 - BUILD + PUSH
         id: docker_build
         uses: docker/build-push-action@v2
         with:
@@ -30,5 +32,5 @@ jobs:
           file: .docker/api/prod.Dockerfile
           tags: ghcr.io/blyndusk/repo-template_api:latest
 
-      - name: 4 - IMAGE DIGEST
+      - name: 5 - IMAGE DIGEST
         run: echo ${{ steps.docker_build.outputs.digest }}

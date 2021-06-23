@@ -9,7 +9,7 @@ ENV GO111MODULE=on
 LABEL org.opencontainers.image.source = "https://github.com/blyndusk/repo-template"
 
 # Set the current working with go absolute path
-WORKDIR /go/src/github.com/blyndusk/image-resizer/api
+WORKDIR /go/src/github.com/blyndusk/repo-template/api
 
 # ----- INSTALL -----
 
@@ -34,10 +34,10 @@ RUN go build -o ./tmp/main ./
 FROM alpine
 
 # Copy binary
-COPY --from=builder /go/src/github.com/blyndusk/image-resizer/api/ /image-resizer/api/
+COPY --from=builder /go/src/github.com/blyndusk/repo-template/api/ /repo-template/api/
 
 # Set current directory
-WORKDIR /image-resizer/api/
+WORKDIR /repo-template/api/
 
 # Use executable
-ENTRYPOINT [ "/image-resizer/api/tmp/main" ]
+ENTRYPOINT [ "/repo-template/api/tmp/main" ]

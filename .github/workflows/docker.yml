@@ -31,7 +31,7 @@ jobs:
           push: true
           context: .
           file: .docker/api/prod.Dockerfile
-          tags: blyndusk/repo-template_api:latest
+          tags: ghcr.io/blyndusk/repo-template_api:latest
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}

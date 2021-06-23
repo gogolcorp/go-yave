@@ -2,6 +2,9 @@ FROM golang:alpine
 
 # ----- SETUP -----
 
+# Enable Go modules
+ENV GO111MODULE=on
+
 # Set the current working with go absolute path
 WORKDIR /go/src/github.com/blyndusk/repo-template/api
 

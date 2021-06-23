@@ -2,6 +2,9 @@ FROM golang:alpine
 
 # ----- SETUP -----
 
+# Enable Go modules
+ENV GO111MODULE=on
+
 # Set the image source for ghcr.io
 LABEL org.opencontainers.image.source = "https://github.com/blyndusk/repo-template"
 

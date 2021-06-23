@@ -9,7 +9,7 @@ services:
     ports:
       - 3333:3333
     volumes:
-      - ./api:/go/src/github.com/blyndusk/image-resizer/api
+      - ./api:/go/src/github.com/blyndusk/repo-template/api
     networks:
       - main
 

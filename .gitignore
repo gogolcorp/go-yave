@@ -1,1 +1,3 @@
-__pycache__
+api/tmp
+api/api
+api/.env

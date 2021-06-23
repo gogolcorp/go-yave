@@ -1,11 +1,44 @@
 version: "3"
 
 services:
-  web:
-    build: .
+  api:
+    container_name: api
+    build:
+      context: .
+      dockerfile: .docker/api/dev.Dockerfile
     ports:
-      - "5000:5000"
-  redis:
-    image: "redis:alpine"
+      - 3333:3333
+    volumes:
+      - ./api:/go/src/github.com/blyndusk/repo-template/api
+    networks:
+      - main
 
-    
+  postgres:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=db
+      - DATABASE_HOST=postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    networks:
+      - main
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 3334:8080
+    depends_on:
+      - postgres
+    networks:
+      - main
+
+volumes:
+  postgres:
+
+networks:
+  main:

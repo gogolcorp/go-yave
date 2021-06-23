@@ -1,0 +1,27 @@
+name: GO
+
+on: [push]
+
+jobs:
+  GO:
+    name: GO
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: api
+    steps:
+    - name: 1 - CHECKOUT
+      uses: actions/checkout@v2
+
+    - name: 2 - SETUP GO@1.15
+      uses:  actions/setup-go@v1
+      with:
+          go-version: 1.15
+
+    - name: 3 - LINT
+      run: |
+        gofmt -s -w -l .
+        
+    - name: 4 - BUILD
+      run: |
+        go build -v ./...

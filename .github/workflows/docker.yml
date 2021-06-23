@@ -3,7 +3,7 @@ name: DOCKER
 on:
   push:
     branches:
-      - feat_golang
+      - main
 
 jobs:
   DOCKER:

@@ -10,28 +10,15 @@ jobs:
     name: DOCKER
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+      - name: 1 - CHECKOUT
+        uses: actions/checkout@v2
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-
-      - name: Login to DockerHub
-        uses: docker/login-action@v1
+      - name: 2 - BUILD + PUSH DOCKER
+        uses: docker/build-push-action@v1
         with:
-          registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Build and push
-        id: docker_build
-        uses: docker/build-push-action@v2
-        with:
-          push: true
-          context: .
-          file: .docker/api/prod.Dockerfile
-          tags: blyndusk/repo-template_api:latest
-
-      - name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
+          registry: ghcr.io
+          repository: blyndusk/repo-template_api
+          dockerfile: .docker/api/prod.Dockerfile
+          tags: "latest"

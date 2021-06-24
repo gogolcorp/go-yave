@@ -13,7 +13,6 @@ Please include a summary of the change (features and fixes)
 - [ ] Bug fix (non-breaking change which fixes an issue)
 - [ ] This change requires a documentation update
 
-
 ## Checklist:
 
 - [ ] My code follows the style guidelines of this project

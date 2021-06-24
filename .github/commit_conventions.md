@@ -1,7 +1,7 @@
 # Commit convention
 
 ```
-tag(scope): #issue_id message
+tag(scope): #issue_id - message
 ```
 
 ## Tag
@@ -22,7 +22,7 @@ Ex: `(docker)`, `(ci)`, `(template)`, ...
 
 The linked issue.
 
-Ex: `#1`, `#2`, `#3`, etc..
+Ex: `#1`, `#619`, `#420`, etc..
 
 ## Message
 
@@ -33,7 +33,7 @@ Ex: `change trigger method of deploy action`
 ## Examples
 
 ```
-add(template): pull request template
-fix(cd): change trigger method of deploy action
-doc(install): add project install method
+add(template): #1 - pull request template
+fix(cd): #619 - change trigger method of deploy action
+doc(install): #420 - add project install method
 ```

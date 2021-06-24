@@ -1,23 +1,31 @@
 # repo-template
 
-[![RELEASE](https://img.shields.io/github/v/release/blyndusk/repo-template)](https://github.com/blyndusk/repo-template/releases)
-[![RELEASE DATE](https://img.shields.io/github/release-date/blyndusk/repo-template)](https://github.com/blyndusk/repo-template/commits/main)
-[![ISSUES](https://img.shields.io/github/issues/blyndusk/repo-template)](https://github.com/blyndusk/repo-template/issues)
-[![PULL REQUESTS](https://img.shields.io/github/issues-pr/blyndusk/repo-template)](https://github.com/blyndusk/repo-template/pulls) 
-[![LAST COMMIT](https://img.shields.io/github/last-commit/blyndusk/repo-template)](https://github.com/blyndusk/repo-template/commits/main)
-[![LICENSE](https://img.shields.io/github/license/blyndusk/repo-template)](https://github.com/blyndusk/repo-template/blob/main/LICENSE) 
-[![REPO SIZE](https://img.shields.io/github/repo-size/blyndusk/repo-template)](https://github.com/blyndusk/repo-template) 
+|                                                                                                                                                      RELEASE                                                                                                                                                      |                                                                                                                                            ISSUES & PR                                                                                                                                             |                                                                 LICENSE                                                                 |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------: |
+| [![RELEASE](https://img.shields.io/github/v/release/blyndusk/repo-template?style=flat-square)](https://github.com/blyndusk/repo-template/releases) [![RELEASE DATE](https://img.shields.io/github/release-date/blyndusk/repo-template?style=flat-square)](https://github.com/blyndusk/repo-template/commits/main) | [![ISSUES](https://img.shields.io/github/issues/blyndusk/repo-template?style=flat-square)](https://github.com/blyndusk/repo-template/issues) [![PULL REQUESTS](https://img.shields.io/github/issues-pr/blyndusk/repo-template?style=flat-square)](https://github.com/blyndusk/repo-template/pulls) | [![LICENSE](https://img.shields.io/github/license/blyndusk/repo-template)](https://github.com/blyndusk/repo-template/blob/main/LICENSE) |
 
-[![DOCKER](https://github.com/blyndusk/repo-template/actions/workflows/docker.yml/badge.svg)](https://github.com/blyndusk/repo-template/actions/workflows/docker.yml) 
-[![GO](https://github.com/blyndusk/repo-template/actions/workflows/go.yml/badge.svg)](https://github.com/blyndusk/repo-template/actions/workflows/go.yml)
-[![RELEASE](https://github.com/blyndusk/repo-template/actions/workflows/release.yml/badge.svg)](https://github.com/blyndusk/repo-template/actions/workflows/release.yml)
+|                                                                            CI                                                                             |                                                                                  CD                                                                                   |                                                                                  MANUAL                                                                                  |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| [![GO](https://github.com/blyndusk/repo-template/actions/workflows/go.yml/badge.svg)](https://github.com/blyndusk/repo-template/actions/workflows/go.yml) | [![DOCKER](https://github.com/blyndusk/repo-template/actions/workflows/docker.yml/badge.svg)](https://github.com/blyndusk/repo-template/actions/workflows/docker.yml) | [![RELEASE](https://github.com/blyndusk/repo-template/actions/workflows/release.yml/badge.svg)](https://github.com/blyndusk/repo-template/actions/workflows/release.yml) |
+
+## I - Introduction
+
+The purpose of this repository is to provide a solid, complete and adaptable base of a Golang project oriented repository, in order to start a new project with a maximum time saving.
+
+This repository provides commit writting and branmch naming conventions, issues and pull request templates, a custom issues labels set.
+
+But also CI/CD and release, using GitHub Actions, Docker and GitHub Container Registry
+
+And finally a simple RESTful API, using Golang, Postgres and Adminer, build with Docker and Docker Compose, using a Makefile.
+## II - Table of content
 
 - [repo-template](#repo-template)
-  - [I - Goal](#i---goal)
+  - [I - Introduction](#i---introduction)
+  - [II - Table of content](#ii---table-of-content)
   - [II - Conventions, templates and guidelines](#ii---conventions-templates-and-guidelines)
     - [A - Commit conventions](#a---commit-conventions)
-    - [B - Issue template](#b---issue-template)
-    - [C - Branch naming convention](#c---branch-naming-convention)
+    - [B - Branch naming convention](#b---branch-naming-convention)
+    - [C - Issue template](#c---issue-template)
     - [D - Pull request template](#d---pull-request-template)
   - [III - Use](#iii---use)
   - [IV - Project use](#iv---project-use)
@@ -28,36 +36,29 @@
     - [Display logs](#display-logs)
   - [V - License](#v---license)
 
-## I - Goal
-
-The purpose of this repository is to provide a solid, complete and adaptable base of a quasi-virgin repository, in order to start a new project with a maximum time saving.
-
-This repository provides:
-  - commit/branch/issues/pull requests conventions, templates and guidelines
-  - GitHub Actions for CI, CD and release
-  
 
 ## II - Conventions, templates and guidelines
 
 ### A - Commit conventions
 
 ```
-tag(scope): #issue_id message
+tag(scope): #issue_id - message
 ```
 
 See [commit_conventions.md](.github/commit_conventions.md) for more informations.
 
-### B - Issue template
-
-See [user-story.md](.github/ISSUE_TEMPLATE/user-story.md) for more informations.
-
-### C - Branch naming convention
+### B - Branch naming convention
 
 ```
 type_scope-of-the-work
 ```
 
 See [branch_naming_convention.md](.github/branch_naming_convention.md) for more informations.
+
+### C - Issue template
+
+See [user-story.md](.github/ISSUE_TEMPLATE/user-story.md) for more informations.
+
 
 ### D - Pull request template
 
@@ -68,7 +69,6 @@ See [pull_request_template.md](.github/pull_request_template.md) for more inform
 Go to `New Repository`, then choose this template
 
 ![create-as-tpl](./docs/create-as-tpl.jpg)
-
 
 ## IV - Project use
 

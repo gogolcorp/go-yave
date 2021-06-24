@@ -7,6 +7,8 @@ import (
 
 func Setup(r *gin.Engine) {
 	usersRoute(r)
+	r.GET("/load_fixtures", controllers.LoadData)
+
 }
 
 func usersRoute(r *gin.Engine) {

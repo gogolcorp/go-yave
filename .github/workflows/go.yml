@@ -10,18 +10,32 @@ jobs:
       run:
         working-directory: api
     steps:
+      # checkout to current workspace
     - name: 1 - CHECKOUT
       uses: actions/checkout@v2
 
+      # install golang with specific version
     - name: 2 - SETUP GO@1.15
       uses:  actions/setup-go@v1
       with:
           go-version: 1.15
 
+    - name: 3 - CACHE GO MODULES
+      uses: actions/cache@v2
+      with:
+        path: |
+          ~/.cache/go-build
+          ~/go/pkg/mod
+        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+        restore-keys: |
+          ${{ runner.os }}-go-
+
+      # lint files before build using gofmt
     - name: 3 - LINT
       run: |
-        gofmt -s -w -l .
-        
+        gofmt -e -l -s -w .
+    
+      # build the project (in the api/ folder L11)
     - name: 4 - BUILD
       run: |
         go build -v ./...

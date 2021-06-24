@@ -23,7 +23,7 @@ logs: ## Display logs of your containers
 	docker-compose logs --follow
 
 lint:
-	gofmt -s -w -l .
+	gofmt -e -l -s -w .
 
 .PHONY: help
 

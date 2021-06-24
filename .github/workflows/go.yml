@@ -20,6 +20,16 @@ jobs:
       with:
           go-version: 1.15
 
+    - name: 3 - CACHE GO MODULES
+      uses: actions/cache@v2
+      with:
+        path: |
+          ~/.cache/go-build
+          ~/go/pkg/mod
+        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+        restore-keys: |
+          ${{ runner.os }}-go-
+
       # lint files before build using gofmt
     - name: 3 - LINT
       run: |

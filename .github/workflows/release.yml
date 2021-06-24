@@ -4,8 +4,9 @@ on:
   # triggered manually by user action
   workflow_dispatch:
     inputs:
-      image_version:
-        description: "THE DOCKER IMAGE TAG"
+      # the semver tag that will be used for the docker image and the release
+      img_tag:
+        description: "The Docker image + release tag"
         required: true
         default: "0.0.0"
 
@@ -24,43 +25,58 @@ jobs:
 
   DOCKER:
     name: DOCKER
-    needs: [SETUP-ENV]
     runs-on: ubuntu-latest
     steps:
+        # checkout to current workspace
       - name: 1 - CHECKOUT
         uses: actions/checkout@v2
 
-      - name: 2 - BUILD + PUSH DOCKER IMG TO GITHUB PACKAGE REGISTRY
-        uses: docker/build-push-action@v1
+        # login to container registry
+      - name: 2 - LOGIN TO GHCR.IO
+        uses: docker/login-action@v1
         with:
-          username: ${{ github.actor }}
-          password: ${{ secrets.GPAT }}
-          registry: docker.pkg.github.com
-          repository: blyndusk/repo-template/pyapp
-          tags: "${{ github.event.inputs.image_version }}"
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+        # build and push the app with given file and tag
+      - name: 3 - BUILD + PUSH
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          context: .
+          file: .docker/api/prod.Dockerfile
+          tags: ghcr.io/blyndusk/repo-template_api:latest
+
+        # output the logs
+      - name: 4 - IMAGE DIGEST
+        run: echo ${{ steps.docker_build.outputs.digest }}
 
   RELEASE:
     name: RELEASE
     needs: [DOCKER]
     runs-on: ubuntu-latest
     steps:
+        # checkout to current workspace
       - name: 1 - CHECKOUT
         uses: actions/checkout@v2
 
+        # generate changelogs from the closed issues
       - name: 2 - CHANGELOG
         uses: heinrichreimer/github-changelog-generator-action@v2.2
         id: changelog_id
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      # create release according to version
+      # create release according to tag input
       - name: 3 - CREATE RELEASE
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.event.inputs.image_version }}
-          release_name: v${{ github.event.inputs.image_version }}
+          tag_name: ${{ github.event.inputs.img_tag }}
+          release_name: v${{ github.event.inputs.img_tag }}
           body: ${{ steps.changelog_id.outputs.changelog }}
           draft: false
           prerelease: false

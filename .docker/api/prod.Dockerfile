@@ -2,11 +2,11 @@ FROM golang:alpine as builder
 
 # ----- SETUP -----
 
-# Enable Go modules
-ENV GO111MODULE=on
-
 # Set the image source for ghcr.io
 LABEL org.opencontainers.image.source = "https://github.com/blyndusk/repo-template"
+
+# Enable Go modules
+ENV GO111MODULE=on
 
 # Set the current working with go absolute path
 WORKDIR /go/src/github.com/blyndusk/repo-template/api

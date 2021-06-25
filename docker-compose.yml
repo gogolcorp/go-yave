@@ -28,7 +28,9 @@ services:
       - main
 
   adminer:
-    image: adminer
+    build:
+      context: .
+      dockerfile: .docker/adminer/Dockerfile
     restart: always
     ports:
       - 3334:8080

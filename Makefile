@@ -12,10 +12,6 @@ start: ## Up the docker-compose without cache or orphans
 	--remove-orphans \
 	--force-recreate
 
-restart: ## down, then up the docker-compose
-	make stop
-	make start
-
 stop: ## Down the docker-compose 
 	docker-compose down
 

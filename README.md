@@ -31,7 +31,7 @@
 
 ## I - Introduction
 
-The purpose of this repository is to provide a **solid**, **complete** and _adaptable_ base of a [Golang](https://golang.org/) project oriented repository, in order to start a new project with a **maximum time saving**.
+The purpose of this repository is to provide a **solid**, **complete** and **adaptable** base of a [Golang](https://golang.org/)-oriented product in a **project-managed** repository, in order to start a new project with a **maximum time saving**.
 
 This repository provides **commit writting** and **branch naming conventions**, **issues** and **pull request templates**, and a **custom issues labels preset**.
 
@@ -39,7 +39,7 @@ But also **CI/CD** and **release** using [GitHub Actions](https://github.com/fea
 
 And finally, a simple **RESTful API**, using [Golang](https://golang.org/), [Postgres](https://www.postgresql.org/) and [Adminer](https://www.adminer.org/), build with [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/), using a [Makefile](<https://en.wikipedia.org/wiki/Make_(software)>).
 
-> This repository gathers all the good practices that I have learned over time, both in terms of organization and good maintenance of a project over time as well as in terms of automation, availability and consistancy.<br/>This repository has a Golang app, but you can use whatever you want, the skeleton of this repository will still be useful.
+> This repository gathers all the good practices that I have learned over time, both in terms of **organization** and **good maintenance** of a project over time as well as in terms of **automation, availability** and **consistancy**.<br/>This repository has a Golang RESTful API, but you can use whatever language you want, the **skeleton** of this repository will still be useful.
 
 ## II - Table of content
 
@@ -55,12 +55,10 @@ And finally, a simple **RESTful API**, using [Golang](https://golang.org/), [Pos
   - [A - CI](#a---ci)
   - [B - CD](#b---cd)
   - [C - Release](#c---release)
-- [IV - Project use](#iv---project-use)
-  - [Help](#help)
-  - [Start](#start)
-  - [Stop](#stop)
-  - [Restart](#restart)
-  - [Display logs](#display-logs)
+- [IV - Golang RESTful API](#iv---golang-restful-api)
+  - [A - Stack](#a---stack)
+  - [B - Makefile](#b---makefile)
+    - [TL;DR](#tldr)
 - [V - License](#v---license)
 
 ## II - Conventions, templates and labels
@@ -114,16 +112,16 @@ It consist of:
 
 [![DOCKER](https://github.com/blyndusk/repo-template/actions/workflows/docker.yml/badge.svg)](https://github.com/blyndusk/repo-template/actions/workflows/docker.yml)
 
-The **CD** workflow is located at [.github/workflows/docker.yml](.github/workflows/docker.yml).  It's triggered a **each push** on **`main` branch**.
+The **CD** workflow is located at [.github/workflows/docker.yml](.github/workflows/docker.yml). It's triggered a **each push** on **`main` branch**.
 
 It consist of:
 
 - **login** into the GitHub container registry (ghcr.io)
-- **build and push** the Golang api using the production Dockerfile located at [.docker/api/prod.Dockerfile](.docker/api/prod.Dockerfile)
+- **build and push** the Golang api using the **production Dockerfile** located at [.docker/api/prod.Dockerfile](.docker/api/prod.Dockerfile)
 
-After that, you can check the pushed container at: `https://github.com/<username>?tab=packages&repo_name=<repository-name>`
+After that, you can check the **pushed container** at: `https://github.com/<username>?tab=packages&repo_name=<repository-name>`
 
-> IMPORTANT: you need to update the production Dockerfile with your username AND repository name. Otherwise, there will be errors at push:
+> IMPORTANT: you need to **update the production Dockerfile** with your **username** AND **_repository name_**. Otherwise, there will be errors at push:
 
 ```bash
 LABEL org.opencontainers.image.source = "https://github.com/<username>/<repository-name>"
@@ -133,9 +131,9 @@ LABEL org.opencontainers.image.source = "https://github.com/<username>/<reposito
 
 [![RELEASE](https://github.com/blyndusk/repo-template/actions/workflows/release.yml/badge.svg)](https://github.com/blyndusk/repo-template/actions/workflows/release.yml)
 
-The **release** workflow is located at [.github/workflows/release.yml](.github/workflows/release.yml). It's triggered manually by user input at: [Actions > RELEASE](https://github.com/blyndusk/repo-template/actions/workflows/release.yml).
+The **release** workflow is located at [.github/workflows/release.yml](.github/workflows/release.yml). It's triggered **manually by user input** at: [Actions > RELEASE](https://github.com/blyndusk/repo-template/actions/workflows/release.yml).
 
-> IMPORTANT: you need to set the **image tag** in the action input, for the action to be able to push the docker image and create a release with a specific version. The image tag is a [SemVer](https://en.wikipedia.org/wiki/Software_versioning) tag, e.g. `1.0.2`.
+> IMPORTANT: you need to set the **image tag** in the action input, for the action to be able to push the docker image and create a release **with a specific version**. The image tag is a [SemVer](https://en.wikipedia.org/wiki/Software_versioning) tag, e.g. `1.0.2`.
 
 It consist of:
 
@@ -143,39 +141,56 @@ It consist of:
 - do the CD (docker) action again, but **with a specific image tag**
 - create a release **with the same tag**, filled with the **generated changelog as closed issues since the last release**
 
-After that, you can check the release at `https://github.com/<user>/<repository-name>/releases`.
+After that, you can check the release at `https://github.com/<username>/<repository-name>/releases`.
 
-## IV - Project use
+## IV - Golang RESTful API
 
-### Help
+The project use Docker and Docker Compose to build and run local and distant images in our workspace.
 
-```bash
-$ make help
-```
+### A - Stack
 
-### Start
+All the images use the same network, more informations at [docker-compose.yml](docker-compose.yml)
 
-```bash
-$ make start
-```
+- **Golang** (use [.docker/api/dev.Dockerfile](.docker/api/dev.Dockerfile) for build)
+  - Port: `3333:3333`
+- **Adminer** (use [.docker/adminer/Dockerfile](.docker/adminer/Dockerfile) for build)
+  - Port: `3334:8080`
+- **Postgres**
+  - Port: `5432:5432`
 
-### Stop
+> Adminer is a GUI that allows us to manage your database by permetting to to create, edit, delete the different entities, tables, etc.
 
-```bash
-$ make start
-```
+### B - Makefile
 
-### Restart
-
-```bash
-$ make restart
-```
-
-### Display logs
+#### TL;DR
 
 ```bash
-$ make logs
+make setup-env start logs
 ```
+
+#### `make help` <!-- omit in toc -->
+
+Display informations about other commands.
+
+#### `make setup-env` <!-- omit in toc -->
+
+Copy the sample environment files.
+
+#### `make start` <!-- omit in toc -->
+
+Up the containers with full cache reset to avoid cache errors.
+
+#### `make stop` <!-- omit in toc -->
+
+Down the containers.
+
+#### `make logs` <!-- omit in toc -->
+
+Display and follow the logs.
+
+#### `make lint` <!-- omit in toc -->
+
+Lint the Go files using `gofmt`.
 
 ## V - License
 

@@ -29,6 +29,10 @@
     </a>
 </p>
 
+<p align="center">
+  <a href="ttps://docs.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-on-github/creating-a-repository-from-a-template">How to use this repo as a template for your project</a>
+</p>
+
 ## I - Introduction
 
 The purpose of this repository is to provide a **solid**, **complete** and **adaptable** base of a [Golang](https://golang.org/)-oriented product in a **project-managed** repository, in order to start a new project with a **maximum time saving**.
@@ -58,7 +62,6 @@ And finally, a simple **RESTful API**, using [Golang](https://golang.org/), [Pos
 - [IV - Golang RESTful API](#iv---golang-restful-api)
   - [A - Stack](#a---stack)
   - [B - Makefile](#b---makefile)
-    - [TL;DR](#tldr)
 - [V - License](#v---license)
 
 ## II - Conventions, templates and labels
@@ -151,18 +154,17 @@ The project use Docker and Docker Compose to build and run local and distant ima
 
 All the images use the same network, more informations at [docker-compose.yml](docker-compose.yml)
 
-- **Golang** (use [.docker/api/dev.Dockerfile](.docker/api/dev.Dockerfile) for build)
-  - Port: `3333:3333`
-- **Adminer** (use [.docker/adminer/Dockerfile](.docker/adminer/Dockerfile) for build)
-  - Port: `3334:8080`
-- **Postgres**
-  - Port: `5432:5432`
+| CONTAINER | PORT        | IMAGE                                                    |
+| :-------- | :---------- | :------------------------------------------------------- |
+| GOLANG    | `3333:3333` | [.docker/api/dev.Dockerfile](.docker/api/dev.Dockerfile) |
+| ADMINER   | `3334:8080` | [.docker/adminer/Dockerfile](.docker/adminer/Dockerfile) |
+| POSTGRES  | `5432:5432` | [postgres:latest](https://hub.docker.com/_/postgres)     |
 
 > Adminer is a GUI that allows us to manage your database by permetting to to create, edit, delete the different entities, tables, etc.
 
 ### B - Makefile
 
-#### TL;DR
+#### TL;DR <!-- omit in toc -->
 
 ```bash
 make setup-env start logs

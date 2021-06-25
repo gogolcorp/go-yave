@@ -49,22 +49,22 @@ And finally, a simple **RESTful API**, using [Golang](https://golang.org/), [Pos
 
 - [I - Introduction](#i---introduction)
 - [II - Table of content](#ii---table-of-content)
-- [II - Conventions, templates and labels](#ii---conventions-templates-and-labels)
+- [III - Conventions, templates and labels](#iii---conventions-templates-and-labels)
   - [A - Commit conventions](#a---commit-conventions)
   - [B - Branch naming convention](#b---branch-naming-convention)
   - [C - Issue template](#c---issue-template)
   - [D - Pull request template](#d---pull-request-template)
   - [E - Custom issues labels preset](#e---custom-issues-labels-preset)
-- [III - CI/CD, release and container registry](#iii---cicd-release-and-container-registry)
+- [IV - CI/CD, release and container registry](#iv---cicd-release-and-container-registry)
   - [A - CI](#a---ci)
   - [B - CD](#b---cd)
   - [C - Release](#c---release)
-- [IV - Golang RESTful API](#iv---golang-restful-api)
+- [V - Golang RESTful API](#v---golang-restful-api)
   - [A - Stack](#a---stack)
   - [B - Makefile](#b---makefile)
-- [V - License](#v---license)
+- [VI - License](#vi---license)
 
-## II - Conventions, templates and labels
+## III - Conventions, templates and labels
 
 ### A - Commit conventions
 
@@ -96,7 +96,7 @@ The labels preset is located at [.github/settings.yml](.github/settings.yml).
 
 You can **add, edit or remove** them. To automatically update these labels, you need to **install** the ["Settings" GitHub app](https://github.com/apps/settings), which will **syncs repository settings defined in the file above to your repository**.
 
-## III - CI/CD, release and container registry
+## IV - CI/CD, release and container registry
 
 ### A - CI
 
@@ -146,13 +146,13 @@ It consist of:
 
 After that, you can check the release at `https://github.com/<username>/<repository-name>/releases`.
 
-## IV - Golang RESTful API
+## V - Golang RESTful API
 
-The project use Docker and Docker Compose to build and run local and distant images in our workspace.
+The project use **Docker** and **Docker Compose** to build and run local and distant images in our workspace.
 
 ### A - Stack
 
-All the images use the same network, more informations at [docker-compose.yml](docker-compose.yml)
+All the images use the **same network**, more informations at [docker-compose.yml](docker-compose.yml)
 
 | CONTAINER | PORT        | IMAGE                                                    |
 | :-------- | :---------- | :------------------------------------------------------- |
@@ -160,7 +160,7 @@ All the images use the same network, more informations at [docker-compose.yml](d
 | ADMINER   | `3334:8080` | [.docker/adminer/Dockerfile](.docker/adminer/Dockerfile) |
 | POSTGRES  | `5432:5432` | [postgres:latest](https://hub.docker.com/_/postgres)     |
 
-> Adminer is a GUI that allows us to manage your database by permetting to to create, edit, delete the different entities, tables, etc.
+> Adminer is a GUI that allows us to **manage your database** by permetting to to **create, edit, delete** the different entities, tables, etc.
 
 ### B - Makefile
 
@@ -172,28 +172,28 @@ make setup-env start logs
 
 #### `make help` <!-- omit in toc -->
 
-Display informations about other commands.
+**Display** informations about other commands.
 
 #### `make setup-env` <!-- omit in toc -->
 
-Copy the sample environment files.
+**Copy** the sample environment files.
 
 #### `make start` <!-- omit in toc -->
 
-Up the containers with full cache reset to avoid cache errors.
+Up the containers with **full cache reset** to avoid cache errors.
 
 #### `make stop` <!-- omit in toc -->
 
-Down the containers.
+**Down** the containers.
 
 #### `make logs` <!-- omit in toc -->
 
-Display and follow the logs.
+**Display and follow** the logs.
 
 #### `make lint` <!-- omit in toc -->
 
-Lint the Go files using `gofmt`.
+**Lint** the Go files using `gofmt`.
 
-## V - License
+## VI - License
 
 Under [MIT](./LICENSE) license.

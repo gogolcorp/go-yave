@@ -25,6 +25,7 @@ jobs:
 
   DOCKER:
     name: DOCKER
+    needs: [SETUP-ENV]
     runs-on: ubuntu-latest
     steps:
         # checkout to current workspace

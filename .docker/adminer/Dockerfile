@@ -1,5 +1,4 @@
-FROM adminer:latest
 
-WORKDIR /var/www/html/
+FROM michalhosna/adminer
 
-COPY .docker/adminer/adminer.css .
+COPY .docker/adminer/adminer.css /var/adminer/adminer.css

@@ -31,6 +31,14 @@ services:
     build:
       context: .
       dockerfile: .docker/adminer/Dockerfile
+    environment: 
+      ADMINER_DB: db
+      ADMINER_DRIVER: pgsql
+      ADMINER_PASSWORD: root
+      ADMINER_SERVER: postgres
+      ADMINER_USERNAME: root
+      ADMINER_AUTOLOGIN: 1
+      ADMINER_NAME: Books search DB
     restart: always
     ports:
       - 3334:8080

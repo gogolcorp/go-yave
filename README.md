@@ -49,22 +49,35 @@ And finally, a simple **RESTful API**, using [Golang](https://golang.org/), [Pos
 
 - [I - Introduction](#i---introduction)
 - [II - Table of content](#ii---table-of-content)
-- [III - Conventions, templates and labels](#iii---conventions-templates-and-labels)
+- [III - Folder structure](#iii---folder-structure)
+- [IV - Conventions, templates and labels](#iv---conventions-templates-and-labels)
   - [A - Commit conventions](#a---commit-conventions)
   - [B - Branch naming convention](#b---branch-naming-convention)
   - [C - Issue template](#c---issue-template)
   - [D - Pull request template](#d---pull-request-template)
   - [E - Custom issues labels preset](#e---custom-issues-labels-preset)
-- [IV - CI/CD, release and container registry](#iv---cicd-release-and-container-registry)
+- [V - CI/CD, release and container registry](#v---cicd-release-and-container-registry)
   - [A - CI](#a---ci)
   - [B - CD](#b---cd)
   - [C - Release](#c---release)
-- [V - Golang RESTful sample API](#v---golang-restful-sample-api)
+- [VI - Golang RESTful sample API](#vi---golang-restful-sample-api)
   - [A - Stack](#a---stack)
   - [B - Makefile](#b---makefile)
-- [VI - License](#vi---license)
+- [VII - License](#vii---license)
 
-## III - Conventions, templates and labels
+## III - Folder structure
+
+The structure of this project follows [these conventions](https://github.com/golang-standards/project-layout).
+
+- `/.github`: Conventions, template, labels, ci, cd, settings
+- `/build`: Dockerfiles
+- `/config`: Environment files
+- `/deploy`: Docker Compose files
+- `/internal`: "private" code
+- `/pkg`: "public" code
+- `/scripts`: Makefile bash scripts for setup/install/start
+
+## IV - Conventions, templates and labels
 
 ### A - Commit conventions
 
@@ -96,7 +109,7 @@ The labels preset is located at [.github/settings.yml](.github/settings.yml).
 
 You can **add, edit or remove** them. To automatically update these labels, you need to **install** the ["Settings" GitHub app](https://github.com/apps/settings), which will **syncs repository settings defined in the file above to your repository**.
 
-## IV - CI/CD, release and container registry
+## V - CI/CD, release and container registry
 
 ### A - CI
 
@@ -146,7 +159,7 @@ It consist of:
 
 After that, you can check the release at `https://github.com/<username>/<repository-name>/releases`.
 
-## V - Golang RESTful sample API
+## VI - Golang RESTful sample API
 
 The project use **Docker** and **Docker Compose** to build and run local and distant images in our workspace.
 
@@ -194,6 +207,6 @@ Up the containers with **full cache reset** to avoid cache errors.
 
 **Lint** the Go files using `gofmt`.
 
-## VI - License
+## VII - License
 
 Under [MIT](./LICENSE) license. 

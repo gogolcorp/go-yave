@@ -1,4 +1,4 @@
 **/tmp
-.env
-.env.old
+**/.env
+**/.env.old
 docker-compose.yml

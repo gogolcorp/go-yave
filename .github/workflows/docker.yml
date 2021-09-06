@@ -29,8 +29,8 @@ jobs:
         with:
           push: true
           context: .
-          file: .docker/api/prod.Dockerfile
-          tags: ghcr.io/blyndusk/repo-template_api:latest
+          file: build/package/sample-api/prod.Dockerfile
+          tags: ghcr.io/blyndusk/repo-template_sample-api:latest
 
         # output the logs
       - name: 4 - IMAGE DIGEST

@@ -6,9 +6,6 @@ jobs:
   GO:
     name: GO
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: api
     steps:
       # checkout to current workspace
     - name: 1 - CHECKOUT

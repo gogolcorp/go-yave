@@ -24,7 +24,7 @@ RUN go mod download -x
 # ----- COPY + RUN -----
 
 # Copy the source from the current directory to the container
-COPY api/ .
+COPY . .
 
 # Build app into specific folder
 RUN go build -o ./tmp/main ./

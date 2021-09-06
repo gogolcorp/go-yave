@@ -59,7 +59,7 @@ And finally, a simple **RESTful API**, using [Golang](https://golang.org/), [Pos
   - [A - CI](#a---ci)
   - [B - CD](#b---cd)
   - [C - Release](#c---release)
-- [V - Golang RESTful API](#v---golang-restful-api)
+- [V - Golang RESTful sample API](#v---golang-restful-sample-api)
   - [A - Stack](#a---stack)
   - [B - Makefile](#b---makefile)
 - [VI - License](#vi---license)
@@ -120,7 +120,7 @@ The **CD** workflow is located at [.github/workflows/docker.yml](.github/workflo
 It consist of:
 
 - **login** into the GitHub container registry (ghcr.io)
-- **build and push** the Golang api using the **production Dockerfile** located at [.docker/api/prod.Dockerfile](.docker/api/prod.Dockerfile)
+- **build and push** the Golang api using the **production Dockerfile** located at [build/pakage/sample-api/prod.Dockerfile](build/pakage/sample-api/prod.Dockerfile)
 
 After that, you can check the **pushed container** at: `https://github.com/<username>?tab=packages&repo_name=<repository-name>`
 
@@ -146,7 +146,7 @@ It consist of:
 
 After that, you can check the release at `https://github.com/<username>/<repository-name>/releases`.
 
-## V - Golang RESTful API
+## V - Golang RESTful sample API
 
 The project use **Docker** and **Docker Compose** to build and run local and distant images in our workspace.
 
@@ -156,8 +156,8 @@ All the images use the **same network**, more informations at [docker-compose.ym
 
 | CONTAINER | PORT        | IMAGE                                                    |
 | :-------- | :---------- | :------------------------------------------------------- |
-| GOLANG    | `3333:3333` | [.docker/api/dev.Dockerfile](.docker/api/dev.Dockerfile) |
-| ADMINER   | `3334:8080` | [.docker/adminer/Dockerfile](.docker/adminer/Dockerfile) |
+| GOLANG    | `3333:3333` | [build/pakage/sample-api/dev.Dockerfile](build/pakage/sample-api/dev.Dockerfile) |
+| ADMINER   | `3334:8080` | [build/package/adminer/Dockerfile](build/package/adminer/Dockerfile) |
 | POSTGRES  | `5432:5432` | [postgres:latest](https://hub.docker.com/_/postgres)     |
 
 > Adminer is a GUI that allows us to **manage your database** by permetting to to **create, edit, delete** the different entities, tables, etc.

@@ -5,8 +5,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/blyndusk/repo-template/api/middlewares"
-	"github.com/blyndusk/repo-template/api/models"
+	"github.com/blyndusk/repo-template/internal/middlewares"
+	"github.com/blyndusk/repo-template/pkg/models"
 )
 
 func CreateUser(c *gin.Context) {

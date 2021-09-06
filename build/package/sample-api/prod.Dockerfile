@@ -9,14 +9,14 @@ LABEL org.opencontainers.image.source = "https://github.com/blyndusk/repo-templa
 ENV GO111MODULE=on
 
 # Set the current working with go absolute path
-WORKDIR /go/src/github.com/blyndusk/repo-template/api
+WORKDIR /go/src/github.com/blyndusk/repo-template
 
 # ----- INSTALL -----
 
 # Copy go.mod + go.sum for install before full copy
-COPY api/go.mod .
+COPY go.mod .
 
-COPY api/go.sum .
+COPY go.sum .
 
 # Download all dependencies
 RUN go mod download -x
@@ -34,10 +34,10 @@ RUN go build -o ./tmp/main ./
 FROM alpine
 
 # Copy binary
-COPY --from=builder /go/src/github.com/blyndusk/repo-template/api/ /repo-template/api/
+COPY --from=builder /go/src/github.com/blyndusk/repo-template/ /repo-template/
 
 # Set current directory
-WORKDIR /repo-template/api/
+WORKDIR /repo-template/
 
 # Use executable
-ENTRYPOINT [ "/repo-template/api/tmp/main" ]
+ENTRYPOINT [ "/repo-template/tmp/main" ]

@@ -1,4 +1,4 @@
-api/tmp
-api/api
-api/.env
-api/.env.old
+**/tmp
+**/.env
+**/.env.old
+docker-compose.yml

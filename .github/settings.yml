@@ -8,13 +8,25 @@ labels:
     description: Related to non-working things or strange behaviors
   
   - name: doc
-    color: 0052CC
+    color: 5319E7
     description: Related to documentation, project illustrations
   
   - name: infra
     color: FBCA04
     description: Related to repository and infra stuff
-  
+
+  - name: go
+    color: 1D76DB
+    description: "Related to Golang files modifications"
+
+  - name: docker
+    color: 0052CC
+    description: "Related to Dockerfiles and Docker Compose files modifications"
+
+  - name: cicd 
+    color: 006B75
+    description: "Related to CI/CD files modifications"
+
   - name: explo
     color: D93F0B
     description: Related to new things I don't know how to do

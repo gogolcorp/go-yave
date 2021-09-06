@@ -1,0 +1,18 @@
+go:
+  - "**/*.go"
+
+docker:
+  - "**/*.Dockerfile"
+  - "**/Dockerfile"
+  - "**/docker-compose.*"
+
+cicd:
+  - ".github/workflows/**/*.yml"
+
+infra:
+  - "**/env/**/*.env"
+
+doc:
+  - "**/*.md"
+
+

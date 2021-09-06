@@ -13,3 +13,6 @@ fi
 
 # replace it anyway
 cp .env.sample .env
+
+go mod init
+go mod

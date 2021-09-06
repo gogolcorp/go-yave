@@ -7,7 +7,7 @@ docker:
   - "**/docker-compose.*"
 
 cicd:
-  - ".github/workflows/**/*.yml"
+  - ".github/**/*.yml"
 
 infra:
   - "**/env/**/*.env"

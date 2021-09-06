@@ -1,11 +1,12 @@
 #!/bin/bash
 
+cp deployments/docker-compose.yml docker-compose.yml
+
 if [ -f .env ]; then
-  cp deployments/docker-compose.yaml docker-compose.yaml
-  
+echo "oui"
   read -p "Replace .env file ? [Y/n]: " -n 1 -r YN
-  if [[ $YN =~ ^[Yy]$ ]] ; then
+  if [[ $YN =~ ^[Yy]$ || $YN = "" ]] ; then
     mv .env .env.old
   fi
-  cp .env.sample .env
 fi
+cp .env.sample .env

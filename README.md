@@ -70,6 +70,7 @@ And finally, a simple **RESTful API**, using [Golang](https://golang.org/), [Pos
 The structure of this project follows [these conventions](https://github.com/golang-standards/project-layout).
 
 - `/.github`: Conventions, template, labels, ci, cd, settings
+- `/cmd`: main files
 - `/build`: Dockerfiles
 - `/config`: Environment files
 - `/deploy`: Docker Compose files

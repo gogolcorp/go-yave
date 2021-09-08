@@ -1,11 +1,12 @@
-version: "3"
+version: "3.8"
 
 services:
   sample-api:
     container_name: sample-api
     build:
       context: .
-      dockerfile: build/package/sample-api/dev.Dockerfile
+      dockerfile: build/package/sample-api/Dockerfile
+      target: dev_build
     ports:
       - 3333:3333
     volumes:

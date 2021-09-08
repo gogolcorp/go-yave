@@ -11,19 +11,19 @@ labels:
     color: 5319E7
     description: Related to documentation, project illustrations
 
-  - name: docker
+  - name: "docker"
     color: 0052CC
     description: "Related to Dockerfiles and Docker Compose files modifications"
 
-  - name: explo
+  - name: "explo"
     color: D93F0B
     description: Related to new things I don't know how to do
     
-  - name: feat
+  - name: "feat"
     color: 0E8A16
     description: Related to new features and implmentations
 
-  - name: go
+  - name: "go"
     color: 1D76DB
     description: "Related to Golang files modifications"
 

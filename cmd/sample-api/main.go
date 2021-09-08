@@ -20,7 +20,7 @@ func setupServer() *gin.Engine {
 
 	r.GET("/", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
-			"message": "[repo-template API]",
+			"message": "[repo-template sample-api]",
 		})
 	})
 

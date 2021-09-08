@@ -14,5 +14,6 @@ printf "\n"
 else
   printf "\n"
   docker-compose up \
+    --build \
     --detach
 fi

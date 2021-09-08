@@ -1,0 +1,44 @@
+labels:
+  - name: "bash"
+    color: "#051400"
+    description: "Related to Bash files modifications"
+  - name: "go"
+    color: "#1D76DB"
+    description: "Related to Golang files modifications"
+
+  - name: "infra"
+    color: "#FBCA04"
+    description: Related to repository and infra stuff
+  - name: "docker"
+    color: "#0052CC"
+    description: "Related to Dockerfiles and Docker Compose files modifications"
+
+  - name: "bug"
+    color: "#B60205"
+    description: "Related to non-working things or strange behaviors"
+  - name: "feat"
+    color: "#0E8A16"
+    description: "Related to new features and implementations"
+  
+  - name: "explo"
+    color: "#D93F0B"
+    description: "Related to new things I don't know how to do"
+  - name: "cicd" 
+    color: "#006B75"
+    description: "Related to CI/CD files modifications"
+  - name: "doc"
+    color: "#5319E7"
+    description: "Related to documentation, project illustrations"
+  
+  - name: "[US] developer"
+    color: "#C2E0C6"
+    description: "As a developer, I want to [...]"
+  
+  - name: "[US] user"
+    color: "#C5DEF5"
+    description: "As a user, I want to [...]"
+  
+  - name: "[US] repowner"
+    color: "#D4C5F9"
+    description: "As a repowner, I want to [...]"
+

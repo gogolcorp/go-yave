@@ -134,7 +134,7 @@ The **CD** workflow is located at [.github/workflows/docker.yml](.github/workflo
 It consist of:
 
 - **login** into the GitHub container registry (ghcr.io)
-- **build and push** the Golang api using the **production Dockerfile** located at [build/pakage/sample-api/prod.Dockerfile](build/pakage/sample-api/prod.Dockerfile)
+- **build and push** the Golang api using the **production Dockerfile** located at [build/pakage/sample-api/Dockerfile](build/pakage/sample-api/Dockerfile)
 
 After that, you can check the **pushed container** at: `https://github.com/<username>?tab=packages&repo_name=<repository-name>`
 
@@ -170,7 +170,7 @@ All the images use the **same network**, more informations at [docker-compose.ym
 
 | CONTAINER | PORT        | IMAGE                                                    |
 | :-------- | :---------- | :------------------------------------------------------- |
-| GOLANG    | `3333:3333` | [build/pakage/sample-api/dev.Dockerfile](build/pakage/sample-api/dev.Dockerfile) |
+| GOLANG    | `3333:3333` | [build/pakage/sample-api/Dockerfile](build/pakage/sample-api/Dockerfile) |
 | ADMINER   | `3334:8080` | [build/package/adminer/Dockerfile](build/package/adminer/Dockerfile) |
 | POSTGRES  | `5432:5432` | [postgres:latest](https://hub.docker.com/_/postgres)     |
 

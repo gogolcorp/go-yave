@@ -47,8 +47,10 @@ jobs:
         with:
           push: true
           context: .
-          file: build/package/sample-api/prod.Dockerfile
+          file: build/package/sample-api/Dockerfile
           tags: ghcr.io/blyndusk/repo-template_sample-api:${{ github.event.inputs.img_tag }}
+          target: prod_build
+
 
         # output the logs
       - name: 4 - IMAGE DIGEST

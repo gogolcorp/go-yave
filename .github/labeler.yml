@@ -7,7 +7,6 @@ bash:
   - "**/Makefile"
 
 docker:
-  - "**/*.Dockerfile"
   - "**/Dockerfile"
   - "**/docker-compose.*"
 

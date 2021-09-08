@@ -16,5 +16,10 @@ logs: ## Display logs of your containers
 lint:
 	gofmt -e -l -s -w .
 
+init:
+	make setup-env
+	make start 
+	make logs
+
 .PHONY: help
 

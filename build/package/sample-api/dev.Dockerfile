@@ -23,6 +23,10 @@ RUN go mod download -x
 # Copy the source from the current directory to the container
 COPY . .
 
+COPY  build/package/sample-api/.air.toml .
+RUN ls -la
+
+
 # Install 'air' live-reload go module
 RUN go get -u github.com/cosmtrek/air
 

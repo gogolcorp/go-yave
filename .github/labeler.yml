@@ -1,5 +1,10 @@
 go:
   - "**/*.go"
+  - "**/go.*"
+
+bash:
+  - "**/*.sh"
+  - "**/Makefile"
 
 docker:
   - "**/*.Dockerfile"
@@ -11,6 +16,8 @@ cicd:
 
 infra:
   - "**/env/**/*.env"
+  - "**/env/**/*.env.*"
 
 doc:
   - "**/*.md"
+  - "**/assets/**/*"

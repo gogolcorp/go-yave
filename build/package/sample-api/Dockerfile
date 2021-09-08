@@ -1,3 +1,5 @@
+# DEV BUILD ---------------------------------------------------------------------------------------
+
 FROM golang:alpine as dev_build
 
 # ----- SETUP -----
@@ -31,6 +33,8 @@ RUN go get -u github.com/cosmtrek/air
 
 # Use the excutable
 ENTRYPOINT ["/go/bin/air", "-d", "-c", "/go/src/github.com/blyndusk/repo-template/build/package/sample-api/.air.conf" ]
+
+# PROD BUILD --------------------------------------------------------------------------------------
 
 FROM golang:alpine as prod_build
 

@@ -27,6 +27,10 @@ labels:
     color: 1D76DB
     description: "Related to Golang files modifications"
 
+  - name: bash
+    color: 051400
+    description: "Related to Bash files modifications"
+
   - name: infra
     color: FBCA04
     description: Related to repository and infra stuff

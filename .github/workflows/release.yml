@@ -28,7 +28,7 @@ jobs:
     needs: [SETUP-ENV]
     runs-on: ubuntu-latest
     steps:
-        # checkout to current workspace
+      # checkout to current workspace
       - name: 1 - CHECKOUT
         uses: actions/checkout@v2
 
@@ -48,9 +48,8 @@ jobs:
           push: true
           context: .
           file: build/package/sample-api/Dockerfile
-          tags: ghcr.io/blyndusk/repo-template_sample-api:${{ github.event.inputs.img_tag }}
+          tags: ghcr.io/blyndusk/go-yave_sample-api:${{ github.event.inputs.img_tag }}
           target: prod_build
-
 
         # output the logs
       - name: 4 - IMAGE DIGEST
@@ -61,16 +60,16 @@ jobs:
     needs: [DOCKER]
     runs-on: ubuntu-latest
     steps:
-        # checkout to current workspace
+      # checkout to current workspace
       - name: 1 - CHECKOUT
         uses: actions/checkout@v2
 
         # generate changelogs from the closed issues
       - name: 2 - CHANGELOG
-        uses: heinrichreimer/github-changelog-generator-action@v2.2
-        id: changelog_id
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+        id: github_release
+        uses: mikepenz/release-changelog-builder-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # create release according to tag input
       - name: 3 - CREATE RELEASE
@@ -80,6 +79,6 @@ jobs:
         with:
           tag_name: ${{ github.event.inputs.img_tag }}
           release_name: v${{ github.event.inputs.img_tag }}
-          body: ${{ steps.changelog_id.outputs.changelog }}
+          body: ${{ steps.github_release.outputs.changelog }}
           draft: false
           prerelease: false

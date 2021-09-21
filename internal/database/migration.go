@@ -1,7 +1,7 @@
 package database
 
 import (
-	"github.com/blyndusk/repo-template/pkg/models"
+	"github.com/blyndusk/go-yave/pkg/models"
 	"github.com/sirupsen/logrus"
 )
 

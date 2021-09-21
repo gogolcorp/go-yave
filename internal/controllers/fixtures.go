@@ -3,8 +3,8 @@ package controllers
 import (
 	"net/http"
 
-	"github.com/blyndusk/repo-template/internal/database"
-	"github.com/blyndusk/repo-template/pkg/models"
+	"github.com/blyndusk/go-yave/internal/database"
+	"github.com/blyndusk/go-yave/pkg/models"
 	"github.com/gin-gonic/gin"
 )
 

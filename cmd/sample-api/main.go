@@ -3,8 +3,8 @@ package main
 import (
 	"net/http"
 
-	"github.com/blyndusk/repo-template/internal/database"
-	"github.com/blyndusk/repo-template/internal/router"
+	"github.com/blyndusk/go-yave/internal/database"
+	"github.com/blyndusk/go-yave/internal/router"
 	"github.com/gin-gonic/gin"
 )
 
@@ -20,7 +20,7 @@ func setupServer() *gin.Engine {
 
 	r.GET("/", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
-			"message": "[repo-template sample-api]",
+			"message": "[go-yave sample-api]",
 		})
 	})
 

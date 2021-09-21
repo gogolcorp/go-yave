@@ -1,4 +1,4 @@
-module github.com/blyndusk/repo-template
+module github.com/blyndusk/go-yave
 
 go 1.13
 

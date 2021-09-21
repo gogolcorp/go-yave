@@ -1,31 +1,32 @@
-<h1 align="center">Repo Template</h1>
 <p align="center">
-    <a href="https://github.com/blyndusk/repo-template/releases">
-      <img src="https://img.shields.io/github/v/release/blyndusk/repo-template"/>
+  <img src="./assets/guava.png" width="256"><br/>
+    <br/>
+    <a href="https://github.com/blyndusk/go-yave/releases">
+      <img src="https://img.shields.io/github/v/release/blyndusk/go-yave"/>
     </a>
-    <a href="https://github.com/blyndusk/repo-template/commits/main">
-      <img src="https://img.shields.io/github/release-date/blyndusk/repo-template"/>
+    <a href="https://github.com/blyndusk/go-yave/commits/main">
+      <img src="https://img.shields.io/github/release-date/blyndusk/go-yave"/>
     </a>
-    <a href="https://github.com/blyndusk/repo-template/issues">
-      <img src="https://img.shields.io/github/issues/blyndusk/repo-template"/>
+    <a href="https://github.com/blyndusk/go-yave/issues">
+      <img src="https://img.shields.io/github/issues/blyndusk/go-yave"/>
     </a>
-    <a href="https://github.com/blyndusk/repo-template/pulls">
-      <img src="https://img.shields.io/github/issues-pr/blyndusk/repo-template"/>
+    <a href="https://github.com/blyndusk/go-yave/pulls">
+      <img src="https://img.shields.io/github/issues-pr/blyndusk/go-yave"/>
     </a>
-    <a href="https://github.com/blyndusk/repo-template/blob/main/LICENSE">
-      <img src="https://img.shields.io/github/license/blyndusk/repo-template"/>
+    <a href="https://github.com/blyndusk/go-yave/blob/main/LICENSE">
+      <img src="https://img.shields.io/github/license/blyndusk/go-yave"/>
     </a>
 </p>
 
 <p align="center">
-  <a href="https://github.com/blyndusk/repo-template/actions/workflows/go.yml">
-      <img src="https://github.com/blyndusk/repo-template/actions/workflows/go.yml/badge.svg"/>
+  <a href="https://github.com/blyndusk/go-yave/actions/workflows/go.yml">
+      <img src="https://github.com/blyndusk/go-yave/actions/workflows/go.yml/badge.svg"/>
     </a>
-     <a href="https://github.com/blyndusk/repo-template/actions/workflows/docker.yml">
-      <img src="https://github.com/blyndusk/repo-template/actions/workflows/docker.yml/badge.svg"/>
+     <a href="https://github.com/blyndusk/go-yave/actions/workflows/docker.yml">
+      <img src="https://github.com/blyndusk/go-yave/actions/workflows/docker.yml/badge.svg"/>
     </a>
-     <a href="https://github.com/blyndusk/repo-template/actions/workflows/release.yml">
-      <img src="https://github.com/blyndusk/repo-template/actions/workflows/release.yml/badge.svg"/>
+     <a href="https://github.com/blyndusk/go-yave/actions/workflows/release.yml">
+      <img src="https://github.com/blyndusk/go-yave/actions/workflows/release.yml/badge.svg"/>
     </a>
 </p>
 
@@ -114,7 +115,7 @@ You can **add, edit or remove** them. To automatically update these labels, you 
 
 ### A - CI
 
-[![GO](https://github.com/blyndusk/repo-template/actions/workflows/go.yml/badge.svg)](https://github.com/blyndusk/repo-template/actions/workflows/go.yml)
+[![GO](https://github.com/blyndusk/go-yave/actions/workflows/go.yml/badge.svg)](https://github.com/blyndusk/go-yave/actions/workflows/go.yml)
 
 The **CI** workflow is located at [.github/workflows/go.yml](.github/workflows/go.yml). It's triggered a **each push** on **all branches**.
 
@@ -127,7 +128,7 @@ It consist of:
 
 ### B - CD
 
-[![DOCKER](https://github.com/blyndusk/repo-template/actions/workflows/docker.yml/badge.svg)](https://github.com/blyndusk/repo-template/actions/workflows/docker.yml)
+[![DOCKER](https://github.com/blyndusk/go-yave/actions/workflows/docker.yml/badge.svg)](https://github.com/blyndusk/go-yave/actions/workflows/docker.yml)
 
 The **CD** workflow is located at [.github/workflows/docker.yml](.github/workflows/docker.yml). It's triggered a **each push** on **`main` branch**.
 
@@ -146,9 +147,9 @@ LABEL org.opencontainers.image.source = "https://github.com/<username>/<reposito
 
 ### C - Release
 
-[![RELEASE](https://github.com/blyndusk/repo-template/actions/workflows/release.yml/badge.svg)](https://github.com/blyndusk/repo-template/actions/workflows/release.yml)
+[![RELEASE](https://github.com/blyndusk/go-yave/actions/workflows/release.yml/badge.svg)](https://github.com/blyndusk/go-yave/actions/workflows/release.yml)
 
-The **release** workflow is located at [.github/workflows/release.yml](.github/workflows/release.yml). It's triggered **manually by user input** at: [Actions > RELEASE](https://github.com/blyndusk/repo-template/actions/workflows/release.yml).
+The **release** workflow is located at [.github/workflows/release.yml](.github/workflows/release.yml). It's triggered **manually by user input** at: [Actions > RELEASE](https://github.com/blyndusk/go-yave/actions/workflows/release.yml).
 
 > IMPORTANT: you need to set the **image tag** in the action input, for the action to be able to push the docker image and create a release **with a specific version**. The image tag is a [SemVer](https://en.wikipedia.org/wiki/Software_versioning) tag, e.g. `1.0.2`.
 
@@ -168,11 +169,11 @@ The project use **Docker** and **Docker Compose** to build and run local and dis
 
 All the images use the **same network**, more informations at [docker-compose.yml](docker-compose.yml)
 
-| CONTAINER | PORT        | IMAGE                                                    |
-| :-------- | :---------- | :------------------------------------------------------- |
+| CONTAINER | PORT        | IMAGE                                                                    |
+| :-------- | :---------- | :----------------------------------------------------------------------- |
 | GOLANG    | `3333:3333` | [build/pakage/sample-api/Dockerfile](build/pakage/sample-api/Dockerfile) |
-| ADMINER   | `3334:8080` | [build/package/adminer/Dockerfile](build/package/adminer/Dockerfile) |
-| POSTGRES  | `5432:5432` | [postgres:latest](https://hub.docker.com/_/postgres)     |
+| ADMINER   | `3334:8080` | [build/package/adminer/Dockerfile](build/package/adminer/Dockerfile)     |
+| POSTGRES  | `5432:5432` | [postgres:latest](https://hub.docker.com/_/postgres)                     |
 
 > Adminer is a GUI that allows us to **manage your database** by permetting to to **create, edit, delete** the different entities, tables, etc.
 
@@ -210,4 +211,4 @@ Up the containers with **full cache reset** to avoid cache errors.
 
 ## VII - License
 
-Under [MIT](./LICENSE) license. 
+Under [MIT](./LICENSE) license.

@@ -10,7 +10,7 @@ jobs:
     name: DOCKER
     runs-on: ubuntu-latest
     steps:
-        # checkout to current workspace
+      # checkout to current workspace
       - name: 1 - CHECKOUT
         uses: actions/checkout@v2
 
@@ -30,7 +30,7 @@ jobs:
           push: true
           context: .
           file: build/package/sample-api/Dockerfile
-          tags: ghcr.io/blyndusk/repo-template_sample-api:latest
+          tags: ghcr.io/blyndusk/go-yave_sample-api:latest
           target: prod_build
 
         # output the logs

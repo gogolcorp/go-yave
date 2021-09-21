@@ -77,8 +77,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.event.inputs.img_tag }}
-          release_name: v${{ github.event.inputs.img_tag }}
-          body: ${{ steps.github_release.outputs.changelog }}
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          body: ${{steps.github_release.outputs.changelog}}
           draft: false
           prerelease: false

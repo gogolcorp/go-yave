@@ -69,7 +69,7 @@ jobs:
         # generate changelogs from the closed issues
       - name: 2 - CHANGELOG
         id: github_release
-        uses: mikepenz/release-changelog-builder-action@v1
+        uses: mikepenz/release-changelog-builder-action@main
         with:
           configuration: .github/changelog.json
           fromTag: 1.0.0

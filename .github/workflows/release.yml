@@ -63,6 +63,8 @@ jobs:
       # checkout to current workspace
       - name: 1 - CHECKOUT
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 100
 
         # generate changelogs from the closed issues
       - name: 2 - CHANGELOG

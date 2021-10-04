@@ -72,7 +72,6 @@ jobs:
         uses: mikepenz/release-changelog-builder-action@v1
         with:
           configuration: .github/changelog.json
-          fromTag: 1.0.0
           toTag: ${{ github.event.inputs.tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

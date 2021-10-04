@@ -70,6 +70,8 @@ jobs:
       - name: 2 - CHANGELOG
         id: github_release
         uses: mikepenz/release-changelog-builder-action@v1
+        with:
+          toTag: ${{ github.ref }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

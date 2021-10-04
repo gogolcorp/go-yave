@@ -72,7 +72,7 @@ jobs:
         uses: mikepenz/release-changelog-builder-action@v1
         with:
           configuration: "changelog_cfg.json"
-          fromTag: "0.1.0"
+          fromTag: 1.0.0
           toTag: ${{ github.event.inputs.tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

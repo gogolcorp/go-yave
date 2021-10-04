@@ -75,7 +75,7 @@ jobs:
           fromTag: 1.0.0
           toTag: ${{ github.event.inputs.tag }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GPAT }}
 
       # create release according to tag input
       - name: 3 - CREATE RELEASE

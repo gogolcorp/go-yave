@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
     inputs:
       # the semver tag that will be used for the docker image and the release
-      img_tag:
+      tag:
         description: "The Docker image + release tag"
         required: true
         default: "0.0.0"
@@ -48,7 +48,7 @@ jobs:
           push: true
           context: .
           file: build/package/sample-api/Dockerfile
-          tags: ghcr.io/blyndusk/go-yave_sample-api:${{ github.event.inputs.img_tag }}
+          tags: ghcr.io/blyndusk/go-yave_sample-api:${{ github.event.inputs.tag }}
           target: prod_build
 
         # output the logs
@@ -64,14 +64,16 @@ jobs:
       - name: 1 - CHECKOUT
         uses: actions/checkout@v2
         with:
-          fetch-depth: 100
+          fetch-depth: 200
 
         # generate changelogs from the closed issues
       - name: 2 - CHANGELOG
         id: github_release
         uses: mikepenz/release-changelog-builder-action@v1
         with:
-          toTag: ${{ github.ref }}
+          configuration: "changelog_cfg.json"
+          fromTag: "0.1.0"
+          toTag: ${{ github.event.inputs.tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -81,9 +83,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          fetch_depth: 50
-          tag_name: ${{ github.ref }}
-          release_name: ${{ github.ref }}
-          body: ${{steps.github_release.outputs.changelog}}
+          tag_name: ${{ github.event.inputs.tag }}
+          release_name: ${{ github.event.inputs.tag }}
+          body: ${{ steps.github_release.outputs.changelog }}
           draft: false
           prerelease: false

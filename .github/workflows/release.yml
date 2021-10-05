@@ -73,12 +73,12 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           author: true
-          bugsLabel: "**🟥 Fixes:**"
+          bugsLabel: "**🔴 Fixes:**"
           bugsLabels: "fix"
-          enhancementLabel: "**🟦 Features:**"
+          enhancementLabel: "**🔵 Features:**"
           enhancementLabels: "feat"
-          prLabel: "🟩 Merged PRs:"
-          issuesLabel: "🟨 Closed issues:"
+          prLabel: "🟢 Merged PRs:"
+          issuesLabel: "🟡 Closed issues:"
           issues: true
           issuesWoLabels: true
           pullRequests: true

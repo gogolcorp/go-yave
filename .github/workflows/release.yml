@@ -74,6 +74,10 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           enhancementLabels: "feat"
           issues: true
+          issuesWoLabels: true
+          issueLineLabels: true
+          pullRequests: true
+          prWoLabels: true
           # onlyLastTag: true
           stripGeneratorNotice: true
           verbose: true

@@ -72,14 +72,19 @@ jobs:
         id: changelog_id
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          author: true
+          bugsLabel: "**🟥 Fixes:**"
+          bugsLabels: "fix"
+          enhancementLabel: "**🟦 Features:**"
           enhancementLabels: "feat"
+          prLabel: "🟩 Merged PRs:"
+          issuesLabel: "🟨 Closed issues:"
           issues: true
           issuesWoLabels: true
-          issueLineLabels: "ALL"
           pullRequests: true
           prWoLabels: true
-          # onlyLastTag: true
           stripGeneratorNotice: true
+          stripHeader: true
           verbose: true
       - run: cat ${{ steps.changelog_id.outputs.changelog }}
 

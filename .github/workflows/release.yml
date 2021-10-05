@@ -72,10 +72,10 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           enhancementLabels: "feat"
           # issues: true
-          # onlyLastTag: true
+          onlyLastTag: true
           # stripGeneratorNotice: true
           # verbose: true
-      - run: cat  ${{ steps.changelog_id.outputs.changelog }}
+      - run: cat ${{ steps.changelog_id.outputs.changelog }}
 
       # # create release according to tag input
       # - name: 3 - CREATE RELEASE

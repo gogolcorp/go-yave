@@ -77,7 +77,7 @@ jobs:
           bugsLabels: "fix"
           enhancementLabel: "**🔴 Features:**"
           enhancementLabels: "feat"
-          prLabel: "**🔴 Merged PRs:**"
+          prLabel: "abcdefgh"
           issuesLabel: "**🔴 Resolved issues:**"
           issues: true
           issuesWoLabels: true

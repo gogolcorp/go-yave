@@ -64,7 +64,7 @@ jobs:
       - name: 1 - CHECKOUT
         uses: actions/checkout@v2
         with:
-          fetch-depth: 200
+          fetch-depth: 50
 
         # generate changelogs from the closed issues
       - name: 2 - CHANGELOG
@@ -72,10 +72,17 @@ jobs:
         id: changelog_id
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          stripGeneratorNotice: true
-          onlyLastTag: true
+          author: true
           enhancementLabels: "feat"
+          issues: true
+          issuesWoLabels: true
+          pullRequests: true
+          prWoLabels: true
+          stripGeneratorNotice: true
+          stripHeaders: true
           verbose: true
+          
+      - run: cat ${{ steps.changelog_id.outputs.changelog }}
 
       # create release according to tag input
       - name: 3 - CREATE RELEASE
@@ -84,7 +91,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.event.inputs.tag }}
-          release_name: ${{ github.event.inputs.tag }}
+          release_name: v${{ github.event.inputs.tag }}
           body: ${{ steps.changelog_id.outputs.changelog }}
           draft: false
           prerelease: false
+

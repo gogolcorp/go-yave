@@ -82,8 +82,6 @@ jobs:
           stripHeaders: true
           verbose: true
           
-      - run: cat ${{ steps.changelog_id.outputs.changelog }}
-
       # create release according to tag input
       - name: 3 - CREATE RELEASE
         uses: actions/create-release@v1

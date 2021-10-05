@@ -1,64 +1,63 @@
 name: RELEASE
 
 on:
-  push
   # triggered manually by user action
-  # workflow_dispatch:
-  #   inputs:
-  #     # the semver tag that will be used for the docker image and the release
-  #     tag:
-  #       description: "The Docker image + release tag"
-  #       required: true
-  #       default: "0.0.0"
+  workflow_dispatch:
+    inputs:
+      # the semver tag that will be used for the docker image and the release
+      tag:
+        description: "The Docker image + release tag"
+        required: true
+        default: "0.0.0"
 
 jobs:
-  # SETUP-ENV:
-  #   name: SETUP ENV
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: 1 - CHECKOUT
-  #       uses: actions/checkout@v2
+  SETUP-ENV:
+    name: SETUP ENV
+    runs-on: ubuntu-latest
+    steps:
+      - name: 1 - CHECKOUT
+        uses: actions/checkout@v2
 
-  #     # if the env doesn't match the branch, the action failed and stop; else, continue
-  #     - name: 2 - CHECK VARIABLES TO MATCH ENVIRONMENT
-  #       if: github.ref != 'refs/heads/main'
-  #       run: exit 1
+      # if the env doesn't match the branch, the action failed and stop; else, continue
+      - name: 2 - CHECK VARIABLES TO MATCH ENVIRONMENT
+        if: github.ref != 'refs/heads/main'
+        run: exit 1
 
-  # DOCKER:
-  #   name: DOCKER
-  #   needs: [SETUP-ENV]
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     # checkout to current workspace
-  #     - name: 1 - CHECKOUT
-  #       uses: actions/checkout@v2
+  DOCKER:
+    name: DOCKER
+    needs: [SETUP-ENV]
+    runs-on: ubuntu-latest
+    steps:
+      # checkout to current workspace
+      - name: 1 - CHECKOUT
+        uses: actions/checkout@v2
 
-  #       # login to container registry
-  #     - name: 2 - LOGIN TO GHCR.IO
-  #       uses: docker/login-action@v1
-  #       with:
-  #         registry: ghcr.io
-  #         username: ${{ github.repository_owner }}
-  #         password: ${{ secrets.GITHUB_TOKEN }}
+        # login to container registry
+      - name: 2 - LOGIN TO GHCR.IO
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-  #       # build and push the app with given file and tag
-  #     - name: 3 - BUILD + PUSH
-  #       id: docker_build
-  #       uses: docker/build-push-action@v2
-  #       with:
-  #         push: true
-  #         context: .
-  #         file: build/package/sample-api/Dockerfile
-  #         tags: ghcr.io/blyndusk/go-yave_sample-api:${{ github.event.inputs.tag }}
-  #         target: prod_build
+        # build and push the app with given file and tag
+      - name: 3 - BUILD + PUSH
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          context: .
+          file: build/package/sample-api/Dockerfile
+          tags: ghcr.io/blyndusk/go-yave_sample-api:${{ github.event.inputs.tag }}
+          target: prod_build
 
-  #       # output the logs
-  #     - name: 4 - IMAGE DIGEST
-  #       run: echo ${{ steps.docker_build.outputs.digest }}
+        # output the logs
+      - name: 4 - IMAGE DIGEST
+        run: echo ${{ steps.docker_build.outputs.digest }}
 
   RELEASE:
     name: RELEASE
-    # needs: [DOCKER]
+    needs: [DOCKER]
     runs-on: ubuntu-latest
     steps:
       # checkout to current workspace
@@ -74,27 +73,26 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           author: true
-          bugsLabels: "fix"
           enhancementLabels: "feat"
           issues: true
           issuesWoLabels: true
           pullRequests: true
           prWoLabels: true
           stripGeneratorNotice: true
-          stripHeader: true
+          stripHeaders: true
           verbose: true
           
       - run: cat ${{ steps.changelog_id.outputs.changelog }}
 
-      # # create release according to tag input
-      # - name: 3 - CREATE RELEASE
-      #   uses: actions/create-release@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     tag_name: ${{ github.event.inputs.tag }}
-      #     release_name: ${{ github.event.inputs.tag }}
-      #     body: ${{ steps.changelog_id.outputs.changelog }}
-      #     draft: false
-      #     prerelease: false
+      # create release according to tag input
+      - name: 3 - CREATE RELEASE
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.event.inputs.tag }}
+          release_name: ${{ github.event.inputs.tag }}
+          body: ${{ steps.changelog_id.outputs.changelog }}
+          draft: false
+          prerelease: false
 

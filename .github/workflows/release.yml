@@ -73,6 +73,9 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           stripGeneratorNotice: true
+          onlyLastTag: true
+          enhancementLabels: "feat"
+          verbose: true
 
       # create release according to tag input
       - name: 3 - CREATE RELEASE

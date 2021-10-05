@@ -1,9 +1,9 @@
 name: RELEASE
 
 on:
-  push
+  # push
   # triggered manually by user action
-  # workflow_dispatch:
+  workflow_dispatch:
   #   inputs:
   #     # the semver tag that will be used for the docker image and the release
   #     tag:

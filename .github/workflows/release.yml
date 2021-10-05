@@ -75,7 +75,7 @@ jobs:
           enhancementLabels: "feat"
           issues: true
           issuesWoLabels: true
-          # issueLineLabels: true
+          issueLineLabels: "ALL"
           pullRequests: true
           prWoLabels: true
           # onlyLastTag: true

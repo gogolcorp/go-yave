@@ -63,6 +63,8 @@ jobs:
       # checkout to current workspace
       - name: 1 - CHECKOUT
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 50
 
         # generate changelogs from the closed issues
       - name: 2 - CHANGELOG
@@ -73,7 +75,7 @@ jobs:
           enhancementLabels: "feat"
           # issues: true
           onlyLastTag: true
-          # stripGeneratorNotice: true
+          stripGeneratorNotice: true
           # verbose: true
       - run: cat ${{ steps.changelog_id.outputs.changelog }}
 

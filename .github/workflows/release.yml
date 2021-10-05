@@ -76,7 +76,7 @@ jobs:
           # issues: true
           onlyLastTag: true
           stripGeneratorNotice: true
-          # verbose: true
+          verbose: true
       - run: cat ${{ steps.changelog_id.outputs.changelog }}
 
       # # create release according to tag input

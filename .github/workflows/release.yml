@@ -75,10 +75,10 @@ jobs:
           author: true
           bugsLabel: "**🔴 Fixes:**"
           bugsLabels: "fix"
-          enhancementLabel: "**🔵 Features:**"
+          enhancementLabel: "**🔴 Features:**"
           enhancementLabels: "feat"
-          prLabel: "**🟢 Merged PRs:**"
-          issuesLabel: "**🟡 Closed issues:**"
+          prLabel: "**🔴 Merged PRs:**"
+          issuesLabel: "**🔴 Resolved issues:**"
           issues: true
           issuesWoLabels: true
           pullRequests: true

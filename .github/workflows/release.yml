@@ -1,6 +1,7 @@
 name: RELEASE
 
-on: push
+on:
+  push
   # triggered manually by user action
   # workflow_dispatch:
   #   inputs:
@@ -77,8 +78,8 @@ jobs:
           bugsLabels: "fix"
           enhancementLabel: "**Features:**"
           enhancementLabels: "feat"
-          prLabel: "**Merged PRs:**"
-          issuesLabel: "**Resolved issues:**"
+          prLabel: "**Merged\PRs:**"
+          issuesLabel: "**Resolved\issues:**"
           issues: true
           issuesWoLabels: true
           pullRequests: true

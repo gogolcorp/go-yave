@@ -73,8 +73,8 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           enhancementLabels: "feat"
-          # issues: true
-          onlyLastTag: true
+          issues: true
+          # onlyLastTag: true
           stripGeneratorNotice: true
           verbose: true
       - run: cat ${{ steps.changelog_id.outputs.changelog }}

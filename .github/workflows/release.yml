@@ -73,10 +73,10 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           author: true
-          enhancementLabel: "**🔴 1:**"
-          bugsLabel: "**🔴 2:**"
-          prLabel: "**🔴 3:**"
-          issuesLabel: "**🔴 4:**"
+          enhancementLabel: "**1:**"
+          bugsLabel: "**2:**"
+          prLabel: "**3:**"
+          issuesLabel: "**4:**"
           bugsLabels: "fix"
           enhancementLabels: "feat"
           issues: true

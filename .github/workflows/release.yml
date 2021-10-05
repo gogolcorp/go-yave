@@ -79,7 +79,6 @@ jobs:
           pullRequests: true
           prWoLabels: true
           stripGeneratorNotice: true
-          stripHeaders: true
           verbose: true
           
       # create release according to tag input

@@ -39,7 +39,7 @@ services:
       ADMINER_SERVER: postgres
       ADMINER_USERNAME: root
       ADMINER_AUTOLOGIN: 1
-      ADMINER_NAME: Books search DB
+      ADMINER_NAME: Sample DB
     restart: always
     ports:
       - 3334:8080

@@ -20,7 +20,7 @@ func setupServer() *gin.Engine {
 
 	r.GET("/", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
-			"message": "[go-yave sample-api]",
+			"message": "[go-yave | sample-api]",
 		})
 	})
 

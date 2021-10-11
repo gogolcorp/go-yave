@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - '**/*.go'
+      - '**/go.*'
 jobs:
   DOCKER:
     name: DOCKER

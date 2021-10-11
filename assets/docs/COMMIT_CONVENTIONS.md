@@ -9,7 +9,7 @@ tag(scope): #issue_id - message
 The type of action executed.
 
 ```
-add|update|delete|fix|test|doc|refacto
+add|upd|del|fix|test|doc|refacto
 ```
 
 ## Scope

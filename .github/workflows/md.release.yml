@@ -1,4 +1,4 @@
-name: RELEASE
+name: "[MD] RELEASE"
 
 on:
   # triggered manually by user action

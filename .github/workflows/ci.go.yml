@@ -1,4 +1,4 @@
-name: GO
+name: "[CI] GO"
 
 on:
   push:

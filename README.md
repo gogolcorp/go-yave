@@ -19,14 +19,14 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/blyndusk/go-yave/actions/workflows/go.yml">
-      <img src="https://github.com/blyndusk/go-yave/actions/workflows/go.yml/badge.svg"/>
+  <a href="https://github.com/blyndusk/go-yave/actions/workflows/ci.go.yml">
+      <img src="https://github.com/blyndusk/go-yave/actions/workflows/ci.go.yml/badge.svg"/>
     </a>
-     <a href="https://github.com/blyndusk/go-yave/actions/workflows/docker.yml">
-      <img src="https://github.com/blyndusk/go-yave/actions/workflows/docker.yml/badge.svg"/>
+     <a href="https://github.com/blyndusk/go-yave/actions/workflows/cd.docker.yml">
+      <img src="https://github.com/blyndusk/go-yave/actions/workflows/cd.docker.yml/badge.svg"/>
     </a>
-     <a href="https://github.com/blyndusk/go-yave/actions/workflows/release.yml">
-      <img src="https://github.com/blyndusk/go-yave/actions/workflows/release.yml/badge.svg"/>
+     <a href="https://github.com/blyndusk/go-yave/actions/workflows/md.release.yml">
+      <img src="https://github.com/blyndusk/go-yave/actions/workflows/md.release.yml/badge.svg"/>
     </a>
 </p>
 
@@ -44,7 +44,7 @@ But also **CI/CD** and **release** using [GitHub Actions](https://github.com/fea
 
 And finally, a simple **RESTful API**, using [Golang](https://golang.org/), [Postgres](https://www.postgresql.org/) and [Adminer](https://www.adminer.org/), build with [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/), using a [Makefile](<https://en.wikipedia.org/wiki/Make_(software)>).
 
-> This repository gathers all the good practices that I have learned over time, both in terms of **organization** and **good maintenance** of a project over time as well as in terms of **automation, availability** and **consistancy**.<br/>This repository has a Golang RESTful API, but you can use whatever language you want, the **skeleton** of this repository will still be useful.
+> This repository gathers all the good practices that I have learned over time, both in terms of **organization** and **good maintenance** of a project over time as well as in terms of **automation, availability** and **consistancy**.
 
 ## II - Table of content
 
@@ -61,10 +61,12 @@ And finally, a simple **RESTful API**, using [Golang](https://golang.org/), [Pos
   - [A - CI](#a---ci)
   - [B - CD](#b---cd)
   - [C - Release](#c---release)
-- [VI - Golang RESTful sample API](#vi---golang-restful-sample-api)
+  - [D - Labeler](#d---labeler)
+- [VI - Project setup](#vi---project-setup)
   - [A - Stack](#a---stack)
   - [B - Makefile](#b---makefile)
-- [VII - License](#vii---license)
+- [VII - Contributing](#vii---contributing)
+- [VIII - License](#viii---license)
 
 ## III - Folder structure
 
@@ -87,7 +89,7 @@ The structure of this project follows [these conventions](https://github.com/gol
 tag(scope): #issue_id - message
 ```
 
-See [commit_conventions.md](.github/commit_conventions.md) for more informations.
+See [COMMIT_CONVENTIONS.md](assets/docs/COMMIT_CONVENTIONS.md) for more informations.
 
 ### B - Branch naming convention
 
@@ -95,7 +97,7 @@ See [commit_conventions.md](.github/commit_conventions.md) for more informations
 type_scope-of-the-work
 ```
 
-See [branch_naming_convention.md](.github/branch_naming_convention.md) for more informations.
+See [BRANCH_NAMING_CONVENTIONS.md](assets/docs/BRANCH_NAMING_CONVENTIONS.md) for more informations.
 
 ### C - Issue template
 
@@ -115,9 +117,9 @@ You can **add, edit or remove** them. To automatically update these labels, you 
 
 ### A - CI
 
-[![GO](https://github.com/blyndusk/go-yave/actions/workflows/go.yml/badge.svg)](https://github.com/blyndusk/go-yave/actions/workflows/go.yml)
+[![GO](https://github.com/blyndusk/go-yave/actions/workflows/ci.go.yml/badge.svg)](https://github.com/blyndusk/go-yave/actions/workflows/ci.go.yml)
 
-The **CI** workflow is located at [.github/workflows/go.yml](.github/workflows/go.yml). It's triggered a **each push** on **all branches**.
+The **CI** workflow is located at [.github/workflows/ci.go.yml](.github/workflows/ci.go.yml). It's triggered a **each push** on **all branches**.
 
 It consist of:
 
@@ -128,9 +130,9 @@ It consist of:
 
 ### B - CD
 
-[![DOCKER](https://github.com/blyndusk/go-yave/actions/workflows/docker.yml/badge.svg)](https://github.com/blyndusk/go-yave/actions/workflows/docker.yml)
+[![DOCKER](https://github.com/blyndusk/go-yave/actions/workflows/cd.docker.yml/badge.svg)](https://github.com/blyndusk/go-yave/actions/workflows/cd.docker.yml)
 
-The **CD** workflow is located at [.github/workflows/docker.yml](.github/workflows/docker.yml). It's triggered a **each push** on **`main` branch**.
+The **CD** workflow is located at [.github/workflows/cd.docker.yml](.github/workflows/cd.docker.yml). It's triggered a **each push** on **`main` branch**.
 
 It consist of:
 
@@ -147,9 +149,9 @@ LABEL org.opencontainers.image.source = "https://github.com/<username>/<reposito
 
 ### C - Release
 
-[![RELEASE](https://github.com/blyndusk/go-yave/actions/workflows/release.yml/badge.svg)](https://github.com/blyndusk/go-yave/actions/workflows/release.yml)
+[![RELEASE](https://github.com/blyndusk/go-yave/actions/workflows/md.release.yml/badge.svg)](https://github.com/blyndusk/go-yave/actions/workflows/md.release.yml)
 
-The **release** workflow is located at [.github/workflows/release.yml](.github/workflows/release.yml). It's triggered **manually by user input** at: [Actions > RELEASE](https://github.com/blyndusk/go-yave/actions/workflows/release.yml).
+The **release** workflow is located at [.github/workflows/md.release.yml](.github/workflows/md.release.yml). It's triggered **manually by user input** at: [Actions > RELEASE](https://github.com/blyndusk/go-yave/actions/workflows/md.release.yml).
 
 > IMPORTANT: you need to set the **image tag** in the action input, for the action to be able to push the docker image and create a release **with a specific version**. The image tag is a [SemVer](https://en.wikipedia.org/wiki/Software_versioning) tag, e.g. `1.0.2`.
 
@@ -161,7 +163,14 @@ It consist of:
 
 After that, you can check the release at `https://github.com/<username>/<repository-name>/releases`.
 
-## VI - Golang RESTful sample API
+### D - Labeler
+
+[![LABELER](https://github.com/blyndusk/go-yave/actions/workflows/ci.labeler.yml/badge.svg)](https://github.com/blyndusk/go-yave/actions/workflows/ci.labeler.yml)
+
+The **labeler** workflow consists in **assigning specific labels** on **pull requests** according to the files that have been modified in the **commits attached to this pull request**.
+
+
+## VI - Project setup
 
 The project use **Docker** and **Docker Compose** to build and run local and distant images in our workspace.
 
@@ -209,6 +218,10 @@ Up the containers with **full cache reset** to avoid cache errors.
 
 **Lint** the Go files using `gofmt`.
 
-## VII - License
+## VII - Contributing
+
+See [CONTRIBUTING.md](assets/docs/CONTRIBUTING.md) for more informations.
+
+## VIII - License
 
 Under [MIT](./LICENSE) license.

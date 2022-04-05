@@ -5,9 +5,12 @@ labels:
   - name: "go"
     color: "#1D76DB"
     description: "Related to Golang files modifications"
+  - name: "js"
+    color: "#FBCA04"
+    description: "Related to Vuejs / JavaScript files modifications"
 
   - name: "infra"
-    color: "#FBCA04"
+    color: "#5319E7"
     description: Related to repository and infra stuff
   - name: "docker"
     color: "#0052CC"
@@ -27,7 +30,7 @@ labels:
     color: "#006B75"
     description: "Related to CI/CD files modifications"
   - name: "doc"
-    color: "#5319E7"
+    color: "#FEF2C0"
     description: "Related to documentation, project illustrations"
   
   - name: "[US] developer"

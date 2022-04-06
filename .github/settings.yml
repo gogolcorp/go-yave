@@ -9,12 +9,12 @@ labels:
   - name: "explo"
     color: "#FBCA04"
     description: "Related to new things I don't know how to do"
-    
+
   # languages
   - name: "bash"
     color: "#300A24"
     description: "Related to Bash files modifications"
-  - name: "go"
+  - name: "golang"
     color: "#00A9DA"
     description: "Related to Golang files modifications"
   - name: "js"
@@ -23,10 +23,10 @@ labels:
   - name: "docker"
     color: "#2497ED"
     description: "Related to Dockerfiles and Docker Compose files modifications"
-  - name: "k8s"
+  - name: "kubernetes"
     color: "#326CE5"
     description: "Related to Terraform files modifications"
-  - name: "tf"
+  - name: "terraform"
     color: "#7B42BC"
     description: "Related to Terraform files modifications"
 

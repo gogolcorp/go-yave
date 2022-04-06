@@ -2,7 +2,7 @@
 bash:
   - "**/*.sh"
   - "**/Makefile"
-go:
+golang:
   - "**/*.go"
   - "**/go.*"
 js:
@@ -19,7 +19,7 @@ kubernetes:
   - "k8s/**/*"
   - "charts/**/*"
   - "helm/**/*"
-tf:
+terraform:
   - "terraform/**/*"
   - "tfk8s/**/*"
   - "**/*.tf"

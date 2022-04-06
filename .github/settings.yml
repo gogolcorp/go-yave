@@ -51,7 +51,7 @@ labels:
   - name: "[US] user"
     color: "#C5DEF5"
     description: "As a user, I want to [...]"
-  - name: "[US] repowner"
+  - name: "[US] ops/repo manager"
     color: "#D4C5F9"
     description: "As a repowner, I want to [...]"
 

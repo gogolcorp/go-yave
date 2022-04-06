@@ -1,22 +1,45 @@
-go:
-  - "**/*.go"
-  - "**/go.*"
-
+# languages
 bash:
   - "**/*.sh"
   - "**/Makefile"
-
+go:
+  - "**/*.go"
+  - "**/go.*"
+js:
+  - "web/**/*"
+  - "**/*.js"
+  - "**/*.json"
+  - "**/*.vue"
 docker:
   - "**/Dockerfile"
+  - "**/Dockerfile.*"
   - "**/docker-compose.*"
+kubernetes:
+  - "kubernetes/**/*"
+  - "k8s/**/*"
+  - "charts/**/*"
+  - "helm/**/*"
+tf:
+  - "terraform/**/*"
+  - "tfk8s/**/*"
+  - "**/*.tf"
+  - "helm/**/*"
 
+
+# scope
+dev:
+  - "cmd/**/*"
+  - "internal/**/*"
+  - "pkg/**/*"
+  - "web/**/*"
+ops:
+  - "build/**/*"
+  - "deploy/**/*"
+  - "scripts/**/*"
 cicd:
   - ".github/**/*.yml"
-
-infra:
-  - "**/env/**/*.env"
-  - "**/env/**/*.env.*"
-
 doc:
   - "**/*.md"
-  - "**/assets/**/*"
+  - "**/*.txt"
+  - "assets/**/*"
+

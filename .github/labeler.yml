@@ -21,10 +21,8 @@ kubernetes:
   - "helm/**/*"
 terraform:
   - "terraform/**/*"
-  - "tfk8s/**/*"
+  - "tf/**/*"
   - "**/*.tf"
-  - "helm/**/*"
-
 
 # scope
 dev:

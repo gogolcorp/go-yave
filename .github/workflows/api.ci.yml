@@ -2,8 +2,6 @@ name: "API [Ci]"
 
 on:
   push:
-    branches:
-      - 'dev'
     paths:
       - '**/*.go'
       - '**/go.*'

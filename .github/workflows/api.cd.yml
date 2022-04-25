@@ -1,0 +1,90 @@
+name: "API [CD]"
+
+on:
+  push:
+    branches:
+      - 'dev'
+    paths:
+      - '**/*.go'
+      - '**/go.*'
+      - "cmd/"
+      - "config/"
+      - "internal/"
+      - "pkg/"
+
+
+jobs:
+  BUILD:
+    name: BUILD
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout to current workspace
+    - name: 1 - CHECKOUT
+      uses: actions/checkout@v2
+
+      # Install Golang with specific version
+    - name: 2 - SETUP GO@1.15
+      uses:  actions/setup-go@v1
+      with:
+          go-version: 1.15
+
+      # Cache Go modules to make the build faster
+    - name: 3 - CACHE GO MODULES
+      uses: actions/cache@v2
+      with:
+        path: |
+          ~/.cache/go-build
+          ~/go/pkg/mod
+        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+        restore-keys: |
+          ${{ runner.os }}-go-
+
+      # Lint files before build using gofmt
+    - name: 4 - LINT
+      run: |
+        gofmt -e -l -s -w .
+    
+      # Build the project (in the api/ folder L11)
+    - name: 5 - BUILD
+      run: |
+        go build -v ./...
+
+  RELEASE:
+    name: RELEASE
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout to current workspace
+      - name: 1 - CHECKOUT
+        uses: actions/checkout@v2
+
+        # Login to container registry
+      - name: 2 - LOGIN TO GHCR.IO
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # Setup custom tag name
+      - name: 3 - SETUP ENV VARS
+        run: |
+          echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | head -c8)" >> $GITHUB_ENV
+          echo "CURRENT_DATE=$(date +%Y%m%d%H%M)"                >> $GITHUB_ENV
+          echo "BRANCH_NAME=$GITHUB_REF_NAME"                    >> $GITHUB_ENV
+
+        # Build and push the app with given file and tag
+      - name: 4 - BUILD + PUSH
+        id: docker_build
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          context: .
+          file: build/package/api/Dockerfile
+          target: production 
+            ghcr.io/blyndusk/go-yave_api:${{ env.BRANCH_NAME }}-${{ env.GITHUB_SHA_SHORT }}-${{ env.CURRENT_DATE }}
+            ghcr.io/blyndusk/go-yave_api:${{ env.BRANCH_NAME }}-${{ env.GITHUB_SHA_SHORT }}
+            ghcr.io/blyndusk/go-yave_api:latest
+
+        # output the logs
+      - name: 5 - IMAGE DIGEST
+        run: echo ${{ steps.docker_build.outputs.digest }}

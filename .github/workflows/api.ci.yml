@@ -1,30 +1,34 @@
-name: "[CI] GO"
+name: "API [Ci]"
 
 on:
   push:
     branches:
-      - '**'
+      - 'dev'
     paths:
       - '**/*.go'
       - '**/go.*'
+      - "cmd/"
+      - "config/"
+      - "internal/"
+      - "pkg/"
 
 
 jobs:
-  GO:
-    name: GO
+  BUILD:
+    name: BUILD
     runs-on: ubuntu-latest
     steps:
-      # checkout to current workspace
+      # Checkout to current workspace
     - name: 1 - CHECKOUT
       uses: actions/checkout@v2
 
-      # install golang with specific version
+      # Install Golang with specific version
     - name: 2 - SETUP GO@1.15
       uses:  actions/setup-go@v1
       with:
           go-version: 1.15
 
-      # cache go modules to make the build faster
+      # Cache Go modules to make the build faster
     - name: 3 - CACHE GO MODULES
       uses: actions/cache@v2
       with:
@@ -35,12 +39,12 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-go-
 
-      # lint files before build using gofmt
+      # Lint files before build using gofmt
     - name: 4 - LINT
       run: |
         gofmt -e -l -s -w .
     
-      # build the project (in the api/ folder L11)
+      # Build the project (in the api/ folder L11)
     - name: 5 - BUILD
       run: |
         go build -v ./...

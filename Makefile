@@ -5,7 +5,20 @@ setup-env: ## Copy sample files
 	bash scripts/setup.sh
 
 start: ## Up the docker-compose without cache or orphans
-	bash scripts/start.sh
+	docker-compose up \
+		--build \
+		--detach
+  
+
+start-hard: ## Up the docker-compose without cache or orphans
+	docker-compose up \
+		--detach \
+		--build \
+		--remove-orphans \
+		--force-recreate \
+		--renew-anon-volumes \
+		--always-recreate-deps
+
 
 stop: ## Down the docker-compose 
 	docker-compose down
@@ -17,9 +30,10 @@ lint:
 	gofmt -e -l -s -w .
 
 init:
-	make setup-env
-	make start 
-	make logs
+	make setup-env lint start logs
 
+reload:
+	make down lint start logs
+	
 .PHONY: help
 

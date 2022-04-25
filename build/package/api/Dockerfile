@@ -1,4 +1,4 @@
-# DEV BUILD ---------------------------------------------------------------------------------------
+# DEV BUILD -----------------------------------------------------------------------------
 
 FROM golang:alpine as dev_build
 
@@ -25,14 +25,11 @@ RUN go mod download -x
 # Copy the source from the current directory to the container
 COPY . .
 
-RUN ls -la
-
-
 # Install 'air' live-reload go module
-RUN go get -u github.com/cosmtrek/air
-
+RUN go install github.com/cosmtrek/air@latest
 # Use the excutable
-ENTRYPOINT ["/go/bin/air", "-d", "-c", "/go/src/github.com/blyndusk/go-yave/build/package/sample-api/.air.conf" ]
+# CMD [ "ls", "-la" ]
+ENTRYPOINT ["/go/bin/air", "-d", "-c", "build/package/api/.air.conf" ]
 
 # PROD BUILD --------------------------------------------------------------------------------------
 
@@ -65,7 +62,7 @@ RUN go mod download -x
 COPY . .
 
 # Build app into specific folder
-RUN go build -o ./tmp/main ./cmd/sample-api/main.go
+RUN go build -o ./tmp/main ./cmd/api/main.go
 
 # ----- ALPINE -----
 

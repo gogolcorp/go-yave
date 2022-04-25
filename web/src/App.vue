@@ -41,5 +41,5 @@ import Users from "./components/Users.vue";
       h2
         font-size: 20px
       p
-        font-size: 18px
+        font-size: 16px
 </style>

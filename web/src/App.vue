@@ -9,6 +9,10 @@ import Users from "./components/Users.vue";
       <div class="titles">
         <h1>Go-yave</h1>
         <h2>A clean and complete ready-to-use repository template</h2>
+        <p>
+          with conventions, guidelines, project folder structure, Dockerization,
+          CI/CD, labeler, releaser, automation [...] and some more.
+        </p>
       </div>
     </div>
     <Users />
@@ -36,4 +40,6 @@ import Users from "./components/Users.vue";
         margin: 10px 0
       h2
         font-size: 20px
+      p
+        font-size: 16px
 </style>

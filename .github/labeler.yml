@@ -27,6 +27,7 @@ terraform:
 # scope
 dev:
   - "cmd/**/*"
+  - "config/**/*"
   - "internal/**/*"
   - "pkg/**/*"
   - "web/**/*"

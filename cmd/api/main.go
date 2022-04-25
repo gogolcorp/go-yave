@@ -35,4 +35,3 @@ func setupServer() *gin.Engine {
 	r.Run(":3333")
 	return r
 }
-

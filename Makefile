@@ -1,7 +1,7 @@
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(firstword $(MAKEFILE_LIST)) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
-setup-env: ## Copy sample files 
+setup: ## Copy sample files 
 	bash scripts/setup.sh
 
 start: ## Up the docker-compose without cache or orphans
@@ -10,7 +10,7 @@ start: ## Up the docker-compose without cache or orphans
 		--detach
   
 
-start-hard: ## Up the docker-compose without cache or orphans
+hstart: ## Up the docker-compose without cache or orphans
 	docker-compose up \
 		--detach \
 		--build \
@@ -30,10 +30,13 @@ lint:
 	gofmt -e -l -s -w .
 
 init:
-	make setup-env lint start logs
+	make setup lint start logs
 
 reload:
-	make down lint start logs
+	make stop lint start logs
+
+hreload:
+	make stop lint start logs
 	
 .PHONY: help
 

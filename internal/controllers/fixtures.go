@@ -12,7 +12,7 @@ func LoadData(c *gin.Context) {
 	users := models.Users{
 		{
 			Name: "Alex",
-			Age: 18,
+			Age:  18,
 		},
 		{
 			Name: "Aled",

@@ -1,20 +1,9 @@
 version: "3.8"
 
 services:
-  sample-api:
-    container_name: sample-api
-    build:
-      context: .
-      dockerfile: build/package/sample-api/Dockerfile
-      target: dev_build
-    ports:
-      - 3333:3333
-    volumes:
-      - ./:/go/src/github.com/blyndusk/go-yave/
-    networks:
-      - main
 
   postgres:
+    container_name: go-yave_db
     image: postgres:latest
     environment:
       - POSTGRES_USER=root
@@ -27,8 +16,35 @@ services:
       - postgres:/var/lib/postgresql/data
     networks:
       - main
+      
+  api:
+    container_name: go-yave_api
+    build:
+      context: .
+      dockerfile: build/package/api/Dockerfile
+      target: development
+    ports:
+      - 3333:3333
+    volumes:
+      - ./:/go/src/github.com/blyndusk/go-yave/
+    networks:
+      - main
+
+  web:
+    container_name: go-yave_web
+    build:
+      context: .
+      dockerfile: build/package/web/Dockerfile
+      target: development
+    ports:
+      - 3334:3334
+    volumes:
+      - ./web:/app
+    networks:
+      - main
 
   adminer:
+    container_name: go-yave_adminer
     build:
       context: .
       dockerfile: build/package/adminer/Dockerfile
@@ -42,7 +58,7 @@ services:
       ADMINER_NAME: Sample DB
     restart: always
     ports:
-      - 3334:8080
+      - 3335:8080
     depends_on:
       - postgres
     networks:

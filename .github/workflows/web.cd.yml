@@ -16,7 +16,7 @@ jobs:
     name: BUILD
     runs-on: ubuntu-latest
     env:
-      working-directory: web/
+      wd: web/
     steps:
       # Checkout to current workspace
     - name: 1 - CHECKOUT
@@ -33,7 +33,7 @@ jobs:
       uses: actions/cache@v2
       with:
         path: |
-          node_modules
+          web/node_modules
         key: node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           node-
@@ -41,10 +41,12 @@ jobs:
     # Install packages
     - name: 3 - NPM INSTALL
       run: npm install
+      working-directory: ${ env.wd }}
 
     # Build apps
     - name: 4 - BUILD
       run: npm run build
+      working-directory: ${ env.wd }}
 
   RELEASE:
     name: RELEASE
@@ -78,6 +80,7 @@ jobs:
           context: .
           file: build/package/web/Dockerfile
           target: production 
+          tags: |
             ghcr.io/blyndusk/go-yave_web:${{ env.BRANCH_NAME }}-${{ env.GITHUB_SHA_SHORT }}-${{ env.CURRENT_DATE }}
             ghcr.io/blyndusk/go-yave_web:${{ env.BRANCH_NAME }}-${{ env.GITHUB_SHA_SHORT }}
             ghcr.io/blyndusk/go-yave_web:latest

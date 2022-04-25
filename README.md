@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/guava.png" width="256"><br/>
+  <img src="./assets/logo.png" width="256"><br/>
     <br/>
     <a href="https://github.com/blyndusk/go-yave/releases">
       <img src="https://img.shields.io/github/v/release/blyndusk/go-yave"/>

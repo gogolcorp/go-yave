@@ -56,9 +56,8 @@ RUN go mod download -x
 # ----- COPY SOURCE & RUN -----
 
 # Copy specific folders to avoid large useless images
-COPY .env .env
 COPY cmd/ cmd/
-COPY config/ config/
+COPY config/.env.local .env
 COPY internal/ internal/
 COPY pkg/ pkg/
 

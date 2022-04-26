@@ -16,7 +16,7 @@ RUN npm install
 # ----- COPY SOURCE & RUN -----
 
 # Copy the source from the current directory to the container
-COPY . .
+COPY web/ .
 
 # Expose default Vue port
 EXPOSE 3334

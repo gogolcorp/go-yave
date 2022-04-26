@@ -53,6 +53,7 @@ jobs:
 
   RELEASE:
     name: RELEASE
+    needs: BUILD
     runs-on: ubuntu-latest
     steps:
       # Checkout to current workspace

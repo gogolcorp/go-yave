@@ -4,7 +4,10 @@ on:
   push:
     branches:
       - 'dev'
+      - 'ops'
+      - 'main'
     paths:
+      - "build/package/web/Dockerfile"
       - '**/*.js'
       - '**/*.json'
       - '**/*.vue'
@@ -41,12 +44,12 @@ jobs:
     # Install packages
     - name: 3 - NPM INSTALL
       run: npm install
-      working-directory: ${ env.wd }}
+      working-directory: ${{ env.wd }}
 
     # Build apps
     - name: 4 - BUILD
       run: npm run build
-      working-directory: ${ env.wd }}
+      working-directory: ${{ env.wd }}
 
   RELEASE:
     name: RELEASE

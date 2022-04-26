@@ -4,7 +4,10 @@ on:
   push:
     branches:
       - 'dev'
+      - 'ops'
+      - 'main'
     paths:
+      - "build/package/api/Dockerfile"
       - '**/*.go'
       - '**/go.*'
       - "cmd/"

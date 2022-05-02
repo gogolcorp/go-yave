@@ -36,7 +36,7 @@
 
 ## I - Introduction
 
-The purpose of this repository is to provide a **solid**, **complete** and **adaptable** base of a [Golang](https://golang.org/)-oriented product in a **project-managed** repository, in order to start a new project with a **maximum time saving**.
+The purpose of this repository is to provide a **solid**, **complete**, **beginner friendly**, and **adaptable** base of a [Golang](https://golang.org/)-oriented product in a **project-managed** repository, in order to start a new project with a **maximum time saving**.
 
 This repository provides **commit writting** and **branch naming conventions**, **issues** and **pull request templates**, and a **custom issues labels preset**.
 
@@ -44,7 +44,7 @@ But also **CI/CD** and **release** using [GitHub Actions](https://github.com/fea
 
 And finally, a simple **RESTful API**, using [Golang](https://golang.org/), [Postgres](https://www.postgresql.org/) and [Adminer](https://www.adminer.org/), build with [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/), using a [Makefile](<https://en.wikipedia.org/wiki/Make_(software)>).
 
-> This repository gathers all the good practices that I have learned over time, both in terms of **organization** and **good maintenance** of a project over time as well as in terms of **automation, availability** and **consistancy**.
+> This repository gathers all the good practices that [@nooderg](https://github.com/nooderg/) and [I](https://github.com/blyndusk) have learned over time, both in terms of **organization** and **good maintenance** of a project over time as well as in terms of **automation, availability** and **consistancy**.
 
 ## II - Table of content
 

@@ -1,32 +1,34 @@
 package main
 
 import (
+	"encoding/json"
+	"log"
 	"net/http"
 
-	"github.com/blyndusk/go-yave/internal/database"
+	"github.com/blyndusk/go-yave/internal/infrastructure/database"
 	"github.com/blyndusk/go-yave/internal/router"
-	"github.com/gin-contrib/cors"
-	"github.com/gin-gonic/gin"
+	"github.com/gorilla/handlers"
+	"github.com/gorilla/mux"
 )
 
 func main() {
+	database.Connect(true)
 	setupServer()
 }
 
-func setupServer() *gin.Engine {
-	database.Connect()
-	database.Migrate()
+func setupServer() {
+	r := mux.NewRouter()
 
-	r := gin.Default()
-	r.Use(cors.Default())
-
-	r.GET("/", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"message": "[ go-yave | api ]",
-		})
+	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		json.NewEncoder(w).Encode("All good!")
 	})
 
+	headersOk := handlers.AllowedHeaders([]string{"*"})
+	originsOk := handlers.AllowedOrigins([]string{"*"})
+	methodsOk := handlers.AllowedMethods([]string{"*"})
+
+	r.StrictSlash(true)
+
 	router.Setup(r)
-	r.Run(":3333")
-	return r
+	log.Fatal(http.ListenAndServe(":3333", handlers.CORS(originsOk, headersOk, methodsOk)(r)))
 }

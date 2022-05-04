@@ -27,6 +27,14 @@ provider "scaleway" {
   secret_key = var.scw_secret_key
 }
 
+provider "kubernetes" {
+  host  = module.k8s.cluster_host
+  token = module.k8s.cluster_token
+  cluster_ca_certificate = base64decode(
+    module.k8s.cluster_ca_certificate
+  )
+}
+
 provider "helm" {
   kubernetes {
     host  = module.k8s.cluster_host

@@ -20,6 +20,7 @@ resource "scaleway_rdb_instance" "rdb_instance" {
 
 module "rdb" {
   source     = "./modules/rdb"
+  
   depends_on = [scaleway_rdb_instance.rdb_instance]
   for_each   = var.environments
 

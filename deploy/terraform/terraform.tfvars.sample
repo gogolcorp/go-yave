@@ -1,0 +1,40 @@
+# Scaleway authentification -----------------------------------------
+
+scw_access_key = "xxx"
+scw_secret_key = "xxx-xxx-xxx-xxx"
+scw_project_id = "xxx-xxx-xxx-xxx"
+
+# Miscellaneous -----------------------------------------------------
+
+environments = ["development"]
+
+# Database ----------------------------------------------------------
+
+rdb_instance = {
+  name           = "go-yave_dev"
+  tags           = ["go-yave", "dev"]
+  type           = "DB-DEV-S"
+  engine         = "PostgreSQL-13"
+  user_name      = "admin"
+  is_ha_cluster  = false
+  disable_backup = false
+}
+
+# Kubernetes --------------------------------------------------------
+
+k8s_cluster = {
+  name                          = "go-yave_dev"
+  tags                          = ["go-yave", "dev"]
+  version                       = "1.22"
+  cni                           = "cilium"
+  maintenance_window_day        = "saturday"
+  maintenance_window_start_hour = 2
+}
+
+k8s_pool = {
+  name     = "workload"
+  tags     = ["go-yave", "dev"]
+  type     = "DEV1-M"
+  min_size = 1
+  max_size = 3
+}

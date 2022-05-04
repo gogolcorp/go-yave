@@ -1,4 +1,7 @@
+# Ingress controller ------------------------------------------------
+
 resource "kubernetes_namespace" "ingress" {
+  depends_on = [scaleway_k8s_pool.k8s_pool]
   count = var.install_ingress ? 1 : 0
   metadata {
     name = "ingress"
@@ -15,14 +18,16 @@ resource "helm_release" "ingress" {
   repository = "https://kubernetes.github.io/ingress-nginx"
   chart      = "ingress-nginx"
 
-  // enable to avoid node forwarding
   set {
     name  = "controller.service.externalTrafficPolicy"
     value = "Local"
   }
 }
 
+# Certificate manager -----------------------------------------------
+
 resource "kubernetes_namespace" "cert_manager" {
+  depends_on = [scaleway_k8s_pool.k8s_pool]
   count = var.install_cert_manager ? 1 : 0
   metadata {
     name = "cert-manager"

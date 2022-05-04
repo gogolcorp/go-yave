@@ -1,4 +1,4 @@
-output "cluster_cluster_id" {
+output "cluster_id" {
   value = scaleway_k8s_cluster.k8s_cluster.id
 }
 
@@ -16,4 +16,8 @@ output "cluster_ca_certificate" {
 
 output "cluster_pool_id" {
   value = scaleway_k8s_pool.k8s_pool.id
+}
+
+output "cluster_kubeconfig" {
+  value = scaleway_k8s_cluster.k8s_cluster.kubeconfig[0].config_file
 }

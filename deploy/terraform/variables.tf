@@ -1,74 +1,106 @@
-# variable "project_id" {
-#   type        = string
-#   description = "Your project ID."
-# }
+# Authentification --------------------------------------------------
 
-# variable "access_key" {
-#   type        = string
-#   description = "Access key for scaleway authentication"
-# }
-
-# variable "secret_key" {
-#   type        = string
-#   description = "Secret key for scaleway authentication"
-# }
-
-variable "cluster_name" {
-  type        = string
-  description = "Cluster name"
+variable "access_key" {
+  type = string
+  description = "Scaleway access key to use API."
 }
-variable "cluster_version" {
-  type        = string
-  description = "Kubernetes version"
-  default     = "1.22"
+variable "secret_key" {
+  type = string
+  description = "Scaleway secret key to use API."
 }
-variable "cluster_tags" {
+variable "project_id" {
+  type = string
+  description = "Scaleway current project ID."
+}
+
+# Environments ------------------------------------------------------
+
+variable "environments" {
   type        = set(string)
-  description = "Labels of the cluster"
+  description = "Environments to be created."
 }
 
-variable "node_pool_name" {
+
+variable "override_special" {
   type        = string
-  description = "Node pool type"
-  default     = "workload"
-}
-
-variable "node_pool_node_type" {
-  type        = string
-  description = "Node pool type"
-  default     = "DEV1-M"
-}
-
-variable "node_pool_min_size" {
-  type        = number
-  description = "Node pool min size"
-  default     = 1
-}
-
-variable "node_pool_max_size" {
-  type        = number
-  description = "Node pool max size"
-  default     = 6
-}
-
-variable "node_pool_tags" {
-  type        = set(string)
-  description = "Node labels and taints"
-  default     = []
+  description = "Special characters for random password."
+  default     = "!#*()-_+"
 }
 
 
-variable "install_ingress" {
-  type        = bool
-  description = "Install Ingress"
-  default     = true
+# Database ----------------------------------------------------------
+
+variable "rdb_instance" {
+  type = object({
+    name           = string
+    type           = string
+    engine         = string
+    user_name      = string
+    is_ha_cluster  = bool
+    disable_backup = bool
+  })
+  description = "The instance where the environment rdbs will be created."
 }
 
-variable "install_cert_manager" {
-  type        = bool
-  description = "Install Cert Manager"
-  default     = true
-}
+
+# Kubernetes --------------------------------------------------------
+
+# variable "cluster_name" {
+#   type        = string
+#   description = "Cluster name"
+# }
+# variable "cluster_version" {
+#   type        = string
+#   description = "Kubernetes version"
+#   default     = "1.22"
+# }
+# variable "cluster_tags" {
+#   type        = set(string)
+#   description = "Labels of the cluster"
+# }
+
+# variable "node_pool_name" {
+#   type        = string
+#   description = "Node pool type"
+#   default     = "workload"
+# }
+
+# variable "node_pool_node_type" {
+#   type        = string
+#   description = "Node pool type"
+#   default     = "DEV1-M"
+# }
+
+# variable "node_pool_min_size" {
+#   type        = number
+#   description = "Node pool min size"
+#   default     = 1
+# }
+
+# variable "node_pool_max_size" {
+#   type        = number
+#   description = "Node pool max size"
+#   default     = 6
+# }
+
+# variable "node_pool_tags" {
+#   type        = set(string)
+#   description = "Node labels and taints"
+#   default     = []
+# }
+
+
+# variable "install_ingress" {
+#   type        = bool
+#   description = "Install Ingress"
+#   default     = true
+# }
+
+# variable "install_cert_manager" {
+#   type        = bool
+#   description = "Install Cert Manager"
+#   default     = true
+# }
 
 
 # variable "install_argocd" {
@@ -110,25 +142,3 @@ variable "install_cert_manager" {
 #   description = "Install Keycloak"
 #   default     = false
 # }
-
-variable "environments" {
-  type        = set(string)
-  description = "List of environments to be created"
-}
-
-variable "rdb_instance" {
-  type = object({
-    name           = string
-    type           = string
-    engine         = string
-    user_name      = string
-    is_ha_cluster  = bool
-    disable_backup = bool
-  })
-}
-
-variable "override_special" {
-  type        = string
-  description = "Special characters for random password"
-  default     = "!#*()-_+"
-}

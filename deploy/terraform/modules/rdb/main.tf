@@ -28,8 +28,8 @@ resource "scaleway_rdb_privilege" "rdb_privilege" {
   permission    = "all"
 }
 
-# resource "kubernetes_namespace" "environment" {
-#   metadata {
-#     name = var.environment
-#   }
-# }
+resource "kubernetes_namespace" "environment" {
+  metadata {
+    name = var.environment
+  }
+}

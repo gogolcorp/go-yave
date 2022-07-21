@@ -19,14 +19,17 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/blyndusk/go-yave/actions/workflows/ci.go.yml">
-      <img src="https://github.com/blyndusk/go-yave/actions/workflows/ci.go.yml/badge.svg"/>
+  <a href="https://github.com/blyndusk/go-yave/actions/workflows/web.ci.yml">
+      <img src="https://github.com/blyndusk/go-yave/actions/workflows/web.ci.yml/badge.svg"/>
     </a>
-     <a href="https://github.com/blyndusk/go-yave/actions/workflows/cd.docker.yml">
-      <img src="https://github.com/blyndusk/go-yave/actions/workflows/cd.docker.yml/badge.svg"/>
+       <a href="https://github.com/blyndusk/go-yave/actions/workflows/web.cd.yml">
+      <img src="https://github.com/blyndusk/go-yave/actions/workflows/web.cd.yml/badge.svg"/>
     </a>
-     <a href="https://github.com/blyndusk/go-yave/actions/workflows/md.release.yml">
-      <img src="https://github.com/blyndusk/go-yave/actions/workflows/md.release.yml/badge.svg"/>
+     <a href="https://github.com/blyndusk/go-yave/actions/workflows/api.ci.yml">
+      <img src="https://github.com/blyndusk/go-yave/actions/workflows/api.ci.yml/badge.svg"/>
+    </a>
+     <a href="https://github.com/blyndusk/go-yave/actions/workflows/api.cd.yml">
+      <img src="https://github.com/blyndusk/go-yave/actions/workflows/api.cd.yml/badge.svg"/>
     </a>
 </p>
 

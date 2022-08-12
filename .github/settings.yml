@@ -25,7 +25,6 @@ branches:
         required_approving_review_count: 1
         dismiss_stale_reviews: true
         require_code_owner_reviews: true
-      enforce_admins: true
       required_linear_history: true
   - name: dev
     protection:
@@ -33,7 +32,6 @@ branches:
         required_approving_review_count: 1
         dismiss_stale_reviews: true
         require_code_owner_reviews: true
-      enforce_admins: true
       required_linear_history: true
   - name: ops
     protection:
@@ -41,7 +39,6 @@ branches:
         required_approving_review_count: 1
         dismiss_stale_reviews: true
         require_code_owner_reviews: true
-      enforce_admins: true
       required_linear_history: true
 labels:
   # type of issue

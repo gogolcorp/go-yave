@@ -18,17 +18,21 @@ jobs:
     steps:
       # Checkout to current workspace
     - name: 1 - CHECKOUT
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
 
       # Install Golang with specific version
     - name: 2 - SETUP GO@1.15
-      uses:  actions/setup-go@v1
+      uses:  actions/setup-go@v3
       with:
-          go-version: 1.15
+        go-version-file: 'go.mod'
+        cache: true
+        cache-dependency-path: 'go.sum'
 
       # Cache Go modules to make the build faster
     - name: 3 - CACHE GO MODULES
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: |
           ~/.cache/go-build

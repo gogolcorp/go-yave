@@ -23,17 +23,21 @@ jobs:
     steps:
       # Checkout to current workspace
     - name: 1 - CHECKOUT
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
 
       # Install Golang with specific version
     - name: 2 - SETUP GO@1.15
-      uses:  actions/setup-go@v1
+      uses:  actions/setup-go@v3
       with:
-          go-version: 1.15
+        go-version-file: 'go.mod'
+        cache: true
+        cache-dependency-path: 'go.sum'
 
       # Cache Go modules to make the build faster
     - name: 3 - CACHE GO MODULES
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: |
           ~/.cache/go-build
@@ -59,14 +63,16 @@ jobs:
     steps:
       # Checkout to current workspace
       - name: 1 - CHECKOUT
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
         # Login to container registry
       - name: 2 - LOGIN TO GHCR.IO
-        uses: docker/login-action@v1
+        uses: docker/login-action@v2
         with:
           registry: ghcr.io
-          username: ${{ github.repository_owner }}
+          username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
       # Setup custom tag name
@@ -79,17 +85,13 @@ jobs:
         # Build and push the app with given file and tag
       - name: 4 - BUILD + PUSH
         id: docker_build
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v3
         with:
-          push: true
           context: .
+          push: true
           file: build/package/api/Dockerfile
           target: production 
           tags: |
             ghcr.io/gogolcorp/go-yave_api:${{ env.BRANCH_NAME }}-${{ env.GITHUB_SHA_SHORT }}-${{ env.CURRENT_DATE }}
             ghcr.io/gogolcorp/go-yave_api:${{ env.BRANCH_NAME }}-${{ env.GITHUB_SHA_SHORT }}
             ghcr.io/gogolcorp/go-yave_api:latest
-
-        # output the logs
-      - name: 5 - IMAGE DIGEST
-        run: echo ${{ steps.docker_build.outputs.digest }}

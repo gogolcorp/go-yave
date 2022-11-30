@@ -18,26 +18,34 @@ jobs:
     steps:
       # Checkout to current workspace
     - name: 1 - CHECKOUT
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
 
       # Install Golang with specific version
-    - name: 2 - SETUP GO@1.15
-      uses:  actions/setup-go@v1
+    - name: 2 - SETUP NODE@16
+      uses: actions/setup-node@v3
       with:
-          go-version: 1.15
+        node-version: 16
 
       # Cache Go modules to make the build faster
-    - name: 3 - CACHE NODE MODULES
-      uses: actions/cache@v2
+
+    - name: 3 - GET NPM CACHE DIRECTORY
+      id: npm-cache-dir
+      run: |
+        echo "::set-output name=dir::$(npm config get cache)"
+
+    - name: 4 - CACHE NODE MODULES
+      uses: actions/cache@v3
+      id: npm-cache # use this to check for `cache-hit` ==> if: steps.npm-cache.outputs.cache-hit != 'true'
       with:
-        path: |
-          web/node_modules
-        key: node-${{ hashFiles('**/package-lock.json') }}
+        path: ${{ steps.npm-cache-dir.outputs.dir }}
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
-          node-
+          ${{ runner.os }}-node-
 
     # Install packages
-    - name: 3 - NPM INSTALL
+    - name: 5 - NPM INSTALL
       run: npm install
       working-directory: ${{ env.wd }}
 

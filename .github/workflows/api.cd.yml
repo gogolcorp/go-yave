@@ -86,9 +86,9 @@ jobs:
           file: build/package/api/Dockerfile
           target: production 
           tags: |
-            ghcr.io/blyndusk/go-yave_api:${{ env.BRANCH_NAME }}-${{ env.GITHUB_SHA_SHORT }}-${{ env.CURRENT_DATE }}
-            ghcr.io/blyndusk/go-yave_api:${{ env.BRANCH_NAME }}-${{ env.GITHUB_SHA_SHORT }}
-            ghcr.io/blyndusk/go-yave_api:latest
+            ghcr.io/gogolcorp/go-yave_api:${{ env.BRANCH_NAME }}-${{ env.GITHUB_SHA_SHORT }}-${{ env.CURRENT_DATE }}
+            ghcr.io/gogolcorp/go-yave_api:${{ env.BRANCH_NAME }}-${{ env.GITHUB_SHA_SHORT }}
+            ghcr.io/gogolcorp/go-yave_api:latest
 
         # output the logs
       - name: 5 - IMAGE DIGEST

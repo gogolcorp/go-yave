@@ -1,4 +1,4 @@
-name: "API [Ci]"
+name: "API [CI]"
 
 on:
   push:

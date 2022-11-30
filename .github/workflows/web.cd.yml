@@ -85,9 +85,9 @@ jobs:
           file: build/package/web/Dockerfile
           target: production 
           tags: |
-            ghcr.io/blyndusk/go-yave_web:${{ env.BRANCH_NAME }}-${{ env.GITHUB_SHA_SHORT }}-${{ env.CURRENT_DATE }}
-            ghcr.io/blyndusk/go-yave_web:${{ env.BRANCH_NAME }}-${{ env.GITHUB_SHA_SHORT }}
-            ghcr.io/blyndusk/go-yave_web:latest
+            ghcr.io/gogolcorp/go-yave_web:${{ env.BRANCH_NAME }}-${{ env.GITHUB_SHA_SHORT }}-${{ env.CURRENT_DATE }}
+            ghcr.io/gogolcorp/go-yave_web:${{ env.BRANCH_NAME }}-${{ env.GITHUB_SHA_SHORT }}
+            ghcr.io/gogolcorp/go-yave_web:latest
 
         # output the logs
       - name: 5 - IMAGE DIGEST

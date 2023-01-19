@@ -1,44 +1,53 @@
 package controllers
 
 import (
+	"encoding/json"
+	"log"
 	"net/http"
 
-	"github.com/blyndusk/go-yave/internal/database"
-	"github.com/blyndusk/go-yave/pkg/models"
-	"github.com/gin-gonic/gin"
+	"github.com/blyndusk/go-yave/internal/infrastructure/persistence"
+	"github.com/blyndusk/go-yave/internal/models"
 )
 
-func LoadData(c *gin.Context) {
-	users := models.Users{
+func LoadData(w http.ResponseWriter, r *http.Request) {
+	users := []*models.User{
 		{
-			Name: "Alex",
-			Age:  18,
+			FirstName: "Alex",
+			Age:       18,
 		},
 		{
-			Name: "Aled",
-			Age:  23,
+			FirstName: "Aled",
+			Age:       23,
 		},
 		{
-			Name: "Klowé",
-			Age:  21,
+			FirstName: "Klowé",
+			Age:       21,
 		},
 		{
-			Name: "Louwise",
-			Age:  20,
+			FirstName: "Louwise",
+			Age:       20,
 		},
 		{
-			Name: "Yowann",
-			Age:  20,
+			FirstName: "Yowann",
+			Age:       20,
 		},
 		{
-			Name: "Zedouin",
-			Age:  23,
+			FirstName: "Zedouin",
+			Age:       23,
 		},
 		{
-			Name: "Jajon",
-			Age:  32,
+			FirstName: "Jajon",
+			Age:       32,
 		},
 	}
-	database.Db.Create(&users)
-	c.JSON(http.StatusOK, users)
+
+	for _, user := range users {
+		err := persistence.CreateUser(user)
+		if err != nil {
+			log.Println(err.Error())
+			json.NewEncoder(w).Encode("aled")
+			return
+		}
+	}
+	json.NewEncoder(w).Encode(users)
 }
